@@ -19,7 +19,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
         monochrome = true,
         glue = { "steps" },
         snippets = SnippetType.CAMELCASE,
-        dryRun = false
+        dryRun =false
        )
 
 public class RunnerTest {

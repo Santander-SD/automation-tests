@@ -1,10 +1,9 @@
 package utils;
 
 import static com.codeborne.selenide.Selenide.screenshot;
-
 import org.openqa.selenium.OutputType;
-
 import io.cucumber.java.Scenario;
+import java.io.*;
 
 public class Utils {
 
@@ -15,5 +14,14 @@ public class Utils {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+	}
+
+	public static void filecreation(String phathFile, String contents) throws IOException {
+
+		OutputStreamWriter bufferOut = new OutputStreamWriter(
+                               new FileOutputStream(phathFile),"UTF-8");
+
+		bufferOut.write(contents);
+		bufferOut.close();
 	}
 }

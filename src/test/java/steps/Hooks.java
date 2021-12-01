@@ -1,9 +1,9 @@
 package steps;
 
-import static utils.Utils.capturarScreenshot;
+import static utils.Utils.*;
 
+import java.util.ArrayList;
 import com.codeborne.selenide.Selenide;
-
 import commons.BaseTests;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -20,6 +20,13 @@ public class Hooks {
 	@After
 	public void tearDown(Scenario scenario) throws Exception {
 		capturarScreenshot(scenario);
+
+		//Setup Application Information
+		ArrayList<String> informationApp = new ArrayList<String>();
+		informationApp.add("Superdigital");
+		informationApp.add("Uninformed");
+		informationApp.add("web.pre");
+		addEnvironmentAllure(informationApp, Selenide.webdriver());
 		Selenide.closeWindow();
 	}
 

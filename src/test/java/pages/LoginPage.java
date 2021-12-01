@@ -9,8 +9,12 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ElementsCollection;
 import static com.codeborne.selenide.Selenide.sleep;
 
-
 public class LoginPage {
+    private boolean buttonIngressarEnzbled;
+    private String checkThePasswordEntered = "";
+    private boolean enableButonEye = false;
+    private boolean statusRemenberPassWord = false;
+    private String statusIForgotMyPassword = "";
 
     private SelenideElement selectCountry = $("#login-country-select-label");
     private ElementsCollection selectOptionCoumtry = $$("ul li");
@@ -29,15 +33,25 @@ public class LoginPage {
     private SelenideElement btnPassWordSeven = $("div:nth-child(3) > button:nth-child(1)  div span");
     private SelenideElement btnPassWordEight = $("div:nth-child(3) > button:nth-child(2)  div span");
     private SelenideElement btnPassWordNine = $("div:nth-child(3) > button:nth-child(3)  div span");
-    private SelenideElement visibleKeys = $(" div:nth-child(1) div:nth-child(1)  > input ");
+    private SelenideElement visibleKeys = $("div:nth-child(1) div:nth-child(1)  > input");
     private SelenideElement labelPassWordSucess = $(".a5ebb719__BalanceCard_cardContent__vg04X >div> p");
-    private SelenideElement labelPassWordInvalid = $(" div:nth-child(1)  p.ResultScreen_title__SqB8j");
+    private SelenideElement labelPassWordInvalid = $("div:nth-child(1)  p.ResultScreen_title__SqB8j");
+    private SelenideElement btnEyePassWord = $("button[class='MuiButtonBase-root-17 jss3']");
+    private SelenideElement btnViewPassWordOne = $("div:nth-child(1) div:nth-child(1) > input");
+    private SelenideElement btnViewPassWordTwo = $("div:nth-child(1) div:nth-child(2) > input");
+    private SelenideElement btnViewPassWordThree = $("div:nth-child(1) div:nth-child(3) > input");
+    private SelenideElement btnViewPassWordFour = $("div:nth-child(1) div:nth-child(4) > input");
+    private SelenideElement btnViewPassWordFive = $("div:nth-child(1) div:nth-child(5) > input");
+    private SelenideElement btnViewPassWordSix = $("div:nth-child(1) div:nth-child(6) > input");
+    private SelenideElement btnRememberPassWord = $("input[type='checkbox']");
+    private SelenideElement btnIforgotMyPassword = $("button[variant='text-auto']");
+    private SelenideElement labelRemenberPassWord = $("#modal-title");
 
     private Map<String, SelenideElement> createColectionPassword() {
         /**
          * Private keyboard mapping method type: it works like a dictionary,
-         *  (see HashMap documentation), so it will access the element
-         *  for iteration through a key
+         * (see HashMap documentation), so it will access the element
+         * for iteration through a key
          */
         Map<String, SelenideElement> colectionNumber = new HashMap<String, SelenideElement>();
         colectionNumber.put("0", btnPassWordZero);
@@ -53,19 +67,56 @@ public class LoginPage {
         return colectionNumber;
     }
 
+    private Map<Integer, SelenideElement> createColectionPasswordView() {
+        Map<Integer, SelenideElement> colectionNumberView = new HashMap<Integer, SelenideElement>();
+        colectionNumberView.put(1, btnViewPassWordOne);
+        colectionNumberView.put(2, btnViewPassWordTwo);
+        colectionNumberView.put(3, btnViewPassWordThree);
+        colectionNumberView.put(4, btnViewPassWordFour);
+        colectionNumberView.put(5, btnViewPassWordFive);
+        colectionNumberView.put(6, btnViewPassWordSix);
+        return colectionNumberView;
+    }
+
+    private boolean displayEnterButton() {
+        return btnIngresar.isEnabled();
+    }
+
+    public void setEnableButonEye(boolean enable) {
+        this.enableButonEye = enable;
+    }
+
+    public boolean getButtonIngressarEnzbled() {
+        return this.buttonIngressarEnzbled;
+    }
+
+    public String getCheckThePasswordEntered() {
+        return this.checkThePasswordEntered;
+    }
+
+    public boolean getStatusRemenberPassWord(){
+        return this.statusRemenberPassWord;
+    } 
+
+    public String getStatusIForgotMyPassword(){
+        return this.statusIForgotMyPassword;
+    }
+
     public void accessApplication() {
         labelPageApp.shouldBe(visible);
     }
 
-    public void optionCountry(String country){
-        selectCountry.click();  
+    public void optionCountry(String country) {
+        selectCountry.click();
         selectOptionCoumtry.findBy(text(country)).click();
     }
 
     public void optionAcess(String optionAcess) {
         /**
-         *  Method referring to the mapping of the buttons present on the login screen, its behavior is like a dictionary,
-         *  (see HashMap documentation), so it will access the element for iteration through a key
+         * Method referring to the mapping of the buttons present on the login screen,
+         * its behavior is like a dictionary,
+         * (see HashMap documentation), so it will access the element for iteration
+         * through a key
          */
         Map<String, SelenideElement> colectionAcess = new HashMap<String, SelenideElement>();
         colectionAcess.put("create new account", btnCreateNewAccount);
@@ -78,32 +129,75 @@ public class LoginPage {
     }
 
     public void enter() {
-        btnIngresar.click();
+        if (displayEnterButton()) {
+            btnIngresar.click();
+            this.buttonIngressarEnzbled = true;
+        } else {
+            this.buttonIngressarEnzbled = false;
+        }
     }
+
+    public void iForgotMyPassword(){
+        btnIforgotMyPassword.click();
+        this.statusIForgotMyPassword = labelRemenberPassWord.text();
+    } 
 
     public void enterpassword(String password) {
         /**
-         * Method referring to the actual iteration of the virtual keyboard, 
+         * Method referring to the actual iteration of the virtual keyboard,
          * will handle the 6-digit password, using each element as keys
          */
         visibleKeys.shouldBe(visible);
         Map<String, SelenideElement> colectionAcess = new HashMap<String, SelenideElement>();
+        Map<Integer, SelenideElement> colectionView = new HashMap<Integer, SelenideElement>();
+
+        colectionView = createColectionPasswordView();
         colectionAcess = createColectionPassword();
         for (int i = 0; i < password.length(); i++) {
+            int activate = i+1;
             char myChar = password.charAt(i);
             colectionAcess.get(String.valueOf(myChar)).click();
+            if (enableButonEye) {
+                viewPassword(activate);     
+                    this.checkThePasswordEntered += colectionView.get(i + 1).getValue();          
+            }
         }
     }
 
-    public String validateLogin(){
-        sleep(8000);
+    private void viewPassword(int activate) {
+        if(activate == 1){
+            btnEyePassWord.click();
+        }
+    }
+
+    private void verificao() {
+        boolean status = false;
+        while (!status) {
+            sleep(2000);
+            if (labelPassWordInvalid.exists()) {
+                status = true;
+            } else if (labelPassWordSucess.exists()) {
+                status = true;
+            } else {
+                status = false;
+            }
+        }
+    }
+
+    public String validateLogin() {
+        verificao();
         String statusLogin = "";
-         if(labelPassWordInvalid.exists()){
-            statusLogin  = labelPassWordInvalid.text(); 
-          }else if(labelPassWordSucess.exists()){
-            statusLogin  = labelPassWordSucess.text();
-         }
-		return statusLogin;
-     }
+        if (labelPassWordInvalid.exists()) {
+            statusLogin = labelPassWordInvalid.text();
+        } else if (labelPassWordSucess.exists()) {
+            statusLogin = labelPassWordSucess.text();
+        }
+        return statusLogin;
+    }
+
+    public void rebemberPassWord(){
+        btnRememberPassWord.click();
+        this.statusRemenberPassWord = true;
+    }
 
 }

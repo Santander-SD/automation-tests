@@ -1,24 +1,24 @@
 package runners;
 
 import org.junit.AfterClass;
-import org.junit.runner.RunWith;
-
 import com.codeborne.selenide.Selenide;
-
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import io.cucumber.junit.CucumberOptions.SnippetType;
+import org.junit.runner.RunWith;
 
 
 @RunWith(Cucumber.class)
-@CucumberOptions(plugin = {"pretty",
-        "io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"},
-        features = "classpath:features/",
-        publish = true,
-        //tags = {""},
-        monochrome = true,
-        glue = { "steps" },
+@CucumberOptions(
+        plugin = {"pretty",
+        "io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"
+        },
+        features = "classpath:features",
+        glue = {"steps"},
+        //tags = {"@login"},
         snippets = SnippetType.CAMELCASE,
+        monochrome = true,
+        publish = true,
         dryRun =false
        )
 

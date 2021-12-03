@@ -3,8 +3,6 @@ package utils;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.screenshot;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import io.cucumber.java.Scenario;

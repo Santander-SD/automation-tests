@@ -21,10 +21,14 @@ public class ExternalTransferPage {
     private SelenideElement checkSaveAsFavorite = $(By.xpath("//input[@type='checkbox']"));
     private SelenideElement btnConfirmTransfer = $(By.xpath("//span[contains(.,'Confirmar transferencia')]"));
 
-    public void validateMessage(String message) { $("body").shouldHave(text(message)); }
 
-    public void accessMenuTransfer() { menuTransfer.click(); }
-    public void clickBtnSearchCBUCVUAlias() { btnSearchCBUCVUAlias.click(); }
+    public void accessMenuTransfer() {
+        menuTransfer.click();
+    }
+
+    public void clickBtnSearchCBUCVUAlias() {
+        btnSearchCBUCVUAlias.click();
+    }
 
     public void fillCBUCVUAlias(String data) {
         inputCBUCVUAlias.click();
@@ -32,14 +36,25 @@ public class ExternalTransferPage {
         inputCBUCVUAlias.sendKeys(data);
     }
 
-    public void clickBtnContinue() { btnContinue.click(); }
-    public void fillValue(String value) { inputValue.sendKeys(value); }
+    public void clickBtnContinue() {
+        btnContinue.click();
+    }
+
+    public void fillValue(String value) {
+        inputValue.sendKeys(value);
+    }
 
     public void optionConcept(String option) {
         selectConcept.click();
         selectConceptOption.findBy(text(option)).click();
     }
 
-    public void clickCheckSaveAsFavorite() { checkSaveAsFavorite.click(); }
-    public void clickBtnConfirmTransfer() { btnConfirmTransfer.click(); }
+    public void clickCheckSaveAsFavorite() {
+        checkSaveAsFavorite.click();
+    }
+
+    public void clickBtnConfirmTransfer() {
+        btnConfirmTransfer.click();
+    }
+
 }

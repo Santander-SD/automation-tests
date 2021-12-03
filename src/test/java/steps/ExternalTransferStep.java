@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import pages.ExternalTransferPage;
 import pages.LoginPage;
+import utils.Utils;
 
 public class ExternalTransferStep {
 
@@ -49,7 +50,7 @@ public class ExternalTransferStep {
     }
     @Then("check if the transfer on the application was performed, observing the following message {string}")
     public void check_if_the_transfer_on_the_application_was_performed_observing_the_following(String string) {
-        et.validateMessage(string);
+        Utils.validateMessage(string);
     }
 
     @When("click on the checkbox Guardar contacto como favorito")
@@ -64,11 +65,11 @@ public class ExternalTransferStep {
 
     @Then("the operation will not be continued and the following message will be displayed {string}")
     public void the_operation_will_not_be_continued_and_the_following_message_will_be_displayed(String string) {
-        et.validateMessage(string);
+        Utils.validateMessage(string);
     }
 
     @Then("the application checks that the amount entered is greater than the account balance and display the following message {string}")
     public void the_application_checks(String string) {
-        et.validateMessage(string);
+        Utils.validateMessage(string);
     }
 }

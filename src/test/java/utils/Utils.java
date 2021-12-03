@@ -4,7 +4,6 @@ import static com.codeborne.selenide.Selenide.screenshot;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import io.cucumber.java.Scenario;
-import io.netty.handler.codec.AsciiHeadersEncoder.NewlineType;
 
 import java.io.*;
 import com.codeborne.selenide.Conditional;

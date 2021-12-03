@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
         },
         features = "classpath:features",
         glue = {"steps"},
-        //tags = {"@login"},
+        //tags = "@logout_with_valid_user",
         snippets = SnippetType.CAMELCASE,
         monochrome = true,
         publish = true,

@@ -24,7 +24,7 @@ public class Hooks {
 		//Setup Application Information
 		ArrayList<String> informationApp = new ArrayList<String>();
 		informationApp.add("Superdigital");
-		informationApp.add("Uninformed");
+		informationApp.add("0.6.12");
 		informationApp.add("web.pre");
 		addEnvironmentAllure(informationApp, Selenide.webdriver());
 		Selenide.closeWindow();

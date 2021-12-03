@@ -2,6 +2,9 @@ package pages;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+
+import java.io.IOException;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import static com.codeborne.selenide.Condition.*;
@@ -9,13 +12,17 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ElementsCollection;
 import static com.codeborne.selenide.Selenide.sleep;
 
-public class LoginPage {
+public class LoginPage extends MenuPage {
     private boolean buttonIngressarEnzbled;
     private String checkThePasswordEntered = "";
     private boolean enableButonEye = false;
     private boolean statusRemenberPassWord = false;
     private String statusIForgotMyPassword = "";
+    private String statusPasswordToBeBlocked = "";
+    private String statusSendEmail = "";
+    private String statusLogout = "";
 
+    private SelenideElement labelScreenHomeLogin = $("div h1");
     private SelenideElement selectCountry = $("#login-country-select-label");
     private ElementsCollection selectOptionCoumtry = $$("ul li");
     private SelenideElement labelPageApp = $("div.main-main10 h1");
@@ -46,6 +53,10 @@ public class LoginPage {
     private SelenideElement btnRememberPassWord = $("input[type='checkbox']");
     private SelenideElement btnIforgotMyPassword = $("button[variant='text-auto']");
     private SelenideElement labelRemenberPassWord = $("#modal-title");
+    private SelenideElement btnScreenAlertsIncorrectData = $("div[data-testid='footerButtonsContainer'] button");
+    private SelenideElement btnDeletePasswordEnteredByDigit = $("svg[data-testid='icon-backspace']");
+    private SelenideElement btnCreateNewPassWord = $("div[role='presentation'] div button:nth-child(1)");
+    private SelenideElement labelSendEmailPassWord = $("div h1");
 
     private Map<String, SelenideElement> createColectionPassword() {
         /**
@@ -94,12 +105,24 @@ public class LoginPage {
         return this.checkThePasswordEntered;
     }
 
-    public boolean getStatusRemenberPassWord(){
+    public boolean getStatusRemenberPassWord() {
         return this.statusRemenberPassWord;
-    } 
+    }
 
-    public String getStatusIForgotMyPassword(){
+    public String getStatusIForgotMyPassword() {
         return this.statusIForgotMyPassword;
+    }
+
+    public String getStatusPasswordToBeBlocked() {
+        return this.statusPasswordToBeBlocked;
+    }
+
+    public String getStatusSendEmail() {
+        return this.statusSendEmail;
+    }
+
+    public String getStatusLogout(){
+        return this.statusLogout;
     }
 
     public void accessApplication() {
@@ -137,10 +160,10 @@ public class LoginPage {
         }
     }
 
-    public void iForgotMyPassword(){
+    public void iForgotMyPassword() {
         btnIforgotMyPassword.click();
         this.statusIForgotMyPassword = labelRemenberPassWord.text();
-    } 
+    }
 
     public void enterpassword(String password) {
         /**
@@ -154,18 +177,51 @@ public class LoginPage {
         colectionView = createColectionPasswordView();
         colectionAcess = createColectionPassword();
         for (int i = 0; i < password.length(); i++) {
-            int activate = i+1;
+            int activate = i + 1;
             char myChar = password.charAt(i);
             colectionAcess.get(String.valueOf(myChar)).click();
             if (enableButonEye) {
-                viewPassword(activate);     
-                    this.checkThePasswordEntered += colectionView.get(i + 1).getValue();          
+                viewPassword(activate);
+                this.checkThePasswordEntered += colectionView.get(i + 1).getValue();
             }
         }
     }
 
+    public void enterPasswordToBeBlocked(String password, int passwordAttempts) {
+        for (int i = 0; i < passwordAttempts; i++) {
+            enterpassword(password);
+            verificao();
+            if (i < 2) {
+                btnScreenAlertsIncorrectData.click();
+                for (int j = 0; j < password.length(); j++) {
+                    btnDeletePasswordEnteredByDigit.click();
+                }
+            }
+        }
+        // this.statusPasswordToBeBlocked = labelPassWordInvalid.isDisplayed() == false
+        // ? "true" : "false";
+    }
+
+    public void createNewPassoword() {
+        sleep(2000);
+        btnCreateNewPassWord.exists();
+        btnCreateNewPassWord.shouldBe(visible);
+        btnCreateNewPassWord.click();
+
+        boolean status = false;
+        while (!status) {
+            sleep(2000);
+            if (labelSendEmailPassWord.exists()) {
+                status = true;
+            } else {
+                status = false;
+            }
+        }
+        this.statusSendEmail = labelSendEmailPassWord.getText();
+    }
+
     private void viewPassword(int activate) {
-        if(activate == 1){
+        if (activate == 1) {
             btnEyePassWord.click();
         }
     }
@@ -195,9 +251,22 @@ public class LoginPage {
         return statusLogin;
     }
 
-    public void rebemberPassWord(){
+    public void rebemberPassWord() {
         btnRememberPassWord.click();
         this.statusRemenberPassWord = true;
     }
+
+    public void logoutApplication(String confirm) throws IOException{
+        menuAccessProfileMenu();
+        menuEndSession();
+        if(confirm.equals("true")){    
+            menuExitSession();
+            labelScreenHomeLogin.shouldBe(visible, Duration.ofMillis(6000));
+            this.statusLogout = labelScreenHomeLogin.text();
+        }else{
+            menuAbortExitSession();
+            this.statusLogout = getNameBtnUserMenu();
+        }
+     }
 
 }

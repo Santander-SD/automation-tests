@@ -1,7 +1,7 @@
 #language: en
 #enconding: UTF-8
 @login
-Feature: Login
+Feature: Login - teste
 
   Background:
     Given are on the application's login page

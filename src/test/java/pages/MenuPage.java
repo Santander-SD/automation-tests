@@ -1,6 +1,8 @@
 package pages;
 
 import static com.codeborne.selenide.Selenide.$;
+
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import java.time.Duration;
 import static com.codeborne.selenide.Condition.*;
@@ -17,6 +19,7 @@ public class MenuPage {
     private SelenideElement btnEndSession = $(By.xpath("/html/body/div/div/div/div[2]/div[2]/div/div/div/div[1]/div/div[3]/div/div/div[8]/div/div/div[1]/div/div/div"));
     private SelenideElement btnExitSession = $(By.id("btn-dialog-modal-0"));
     private SelenideElement brtnAbortExitSession = $(By.id("btn-dialog-modal-1"));
+    private SelenideElement btnRecargar = $("div[data-label='Recargar']");
 
     public String getNameBtnUserMenu(){
         this.btnUserMenu.shouldBe(visible, Duration.ofSeconds(6));
@@ -45,6 +48,10 @@ public class MenuPage {
 
     public void menuAbortExitSession(){
         brtnAbortExitSession.click();
+    }
+    
+    public void clickOnRecargar() {
+    	btnRecargar.should(Condition.visible).click();
     }
 
 }

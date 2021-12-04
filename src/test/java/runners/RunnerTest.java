@@ -15,11 +15,11 @@ import org.junit.runner.RunWith;
         },
         features = "classpath:features",
         glue = {"steps"},
-        //tags = "@logout_with_valid_user",
+        //tags = "",
         snippets = SnippetType.CAMELCASE,
         monochrome = true,
         publish = true,
-        dryRun =false
+        dryRun = false
        )
 
 public class RunnerTest {

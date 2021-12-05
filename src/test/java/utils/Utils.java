@@ -1,6 +1,7 @@
 package utils;
 
 import static com.codeborne.selenide.Condition.text;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.screenshot;
 import org.openqa.selenium.OutputType;
@@ -10,8 +11,16 @@ import java.io.*;
 import com.codeborne.selenide.Conditional;
 import com.codeborne.selenide.Selenide;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import io.qameta.allure.Allure;
+import java.awt.event.KeyEvent;
+import java.awt.AWTException;
+import java.awt.Robot;
 
 public class Utils {
+	
+	private static Robot robot;
 
 	public static void capturarScreenshot(Scenario scenario) {
 		try {
@@ -66,10 +75,51 @@ public class Utils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public static void validateMessage(String message) {
 		$("body").shouldHave(text(message));
+	}
+
+    public static void writeRobotString(String s) throws AWTException {
+    	robot=new Robot();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (Character.isUpperCase(c)) {
+                robot.keyPress(KeyEvent.VK_SHIFT);
+            }
+            robot.keyPress(Character.toUpperCase(c));
+            robot.keyRelease(Character.toUpperCase(c));
+
+            if (Character.isUpperCase(c)) {
+                robot.keyRelease(KeyEvent.VK_SHIFT);
+            }
+        }
+        robot.delay(1);
+    }
+    
+	public static void generatePendingTest(String message) throws Exception {
+		Allure.addAttachment("", message);
+		Allure.description(message);
+		throw new io.cucumber.java.PendingException(message);
+	}
+	
+	public static void setAllureDetailsAboutTest(String message) {
+		Allure.addAttachment("", message);
+		Allure.description(message);
+	}	
+	
+	public static String generateRadomName() {
+		String[] a = { "JRR Tolkien", "Elijah Wood", "John Howe", "Ian McKellen", "Viggo Mortensen", "Ted Nasmith", "Alan Lee", "Christopher Lee" }; 
+																									
+		List<String> numberList = new ArrayList<String>();
+		Random r = new Random();
+
+		int i = r.nextInt(a.length);
+		for (int j = 0; j < 50; j++) {
+			numberList.add(Integer.toString(j));
+		}
+		int j = r.nextInt(numberList.size());
+		return a[i]+j;
 	}
 }

@@ -1,8 +1,9 @@
 package pages;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 
+import static com.codeborne.selenide.Selenide.$$;
+import org.openqa.selenium.By;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.HashMap;
@@ -28,7 +29,7 @@ public class LoginPage extends MenuPage {
     private SelenideElement labelPageApp = $("div.main-main10 h1");
     private SelenideElement btnCreateNewAccount = $("article > button:nth-child(1)");
     private SelenideElement btnIreadyHaveAnAccount = $("button:nth-child(2)");
-    private SelenideElement inputNumberDocumentation = $("#login-idnumber-input");
+    private SelenideElement inputNumberDocumentation = $(By.xpath("//input[@id='login-idnumber-input'] | //input[@id='show-login-idnumber-input'] | //input[@id='login-idnumber-input'] | //input[@id='login-alias-input']"));
     private SelenideElement btnIngresar = $("#footer-button-next");
     private SelenideElement btnPassWordZero = $("div:nth-child(4) > button:nth-child(2)  div span");
     private SelenideElement btnPassWordOne = $("div:nth-child(1) > button:nth-child(1)  div span");

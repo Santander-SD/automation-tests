@@ -47,8 +47,8 @@ public class OnboardingPage {
     
     public void fillDNINumberGenerated() {
     	Random rand = new Random();
-    	Integer code = rand.nextInt(900000);
-    	inputNumberDNI.setValue(code.toString());
+    	Integer randomNum = rand.nextInt((900000 - 100000) + 1) + 100000;
+    	inputNumberDNI.setValue(randomNum.toString());
     }
     
     public void clickCrearCuenta() {

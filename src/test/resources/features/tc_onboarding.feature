@@ -8,25 +8,9 @@ Feature: Onboarding
     Given are on the application's login page
     When select the country 'Argentina'
 
-	@valid_crear_cuenta_disabled
-  	Scenario: [AR] Validate button create account disabled when entering an incomplete document ARG
-		Given I provide a DNI '1234'
-		Then button Crear cuenta is disabled
-		
-	@valid_language_argentina
-  	Scenario: [AR] Validate language of ARG terms
-  	Given I provide a valid DNI
- 		And I click on Crear cuenta
-		And on Name I inform 'Jhon' in registro
-		And on Surname I inform 'Test' in registro
-		And on Email I inform 'teste@gmail.com' in registro
-		And on Birth date I inform '14031996' in registro
-		And I click on Continuar
-		Given I see the text 'TÉRMINOS Y CONDICIONES DE USO SUPERDIGITAL ARGENTINA S.A.U®'
-
   	@cell_number_screen
-  	Scenario: [AR] Onboarding Cross - As an user, I want to validate Cuál es tu número de celular? screen
-		Given I provide a DNI '33850980'
+  	Scenario: Onboarding - TC - 076 - [AR] Onboarding Cross - As an user, I want to validate Cuál es tu número de celular? screen
+		Given I provide a valid DNI
  		And I click on Crear cuenta
 		And on Name I inform 'Jhon' in registro
 		And on Surname I inform 'Test' in registro
@@ -42,8 +26,8 @@ Feature: Onboarding
 		Then I see the text 'Ingresar código de verificación'
 		
 	@about_you_screen
-  	Scenario: [AR] Onboarding Cross - Login : As an user, I want to register my cell phone number
-		Given I provide a DNI '33850980'
+  	Scenario: Onboarding - TC - 077 - [AR] Onboarding Cross - Login : As an user, I want to register my cell phone number
+		Given I provide a valid DNI
  		And I click on Crear cuenta
 		And on Name I inform 'Jhon' in registro
 		And on Surname I inform 'Test' in registro
@@ -61,7 +45,7 @@ Feature: Onboarding
 		Then I see the text 'Ahora nos gustaría conocerte mejor.'
 		
 	@see_Qr_code
-  	Scenario: [AR] Onboarding Cross - As an user, I want to validate Cuál es tu número de celular?
+  	Scenario: Onboarding - TC - 078 - [AR] Onboarding Cross - Login : As an user, I want to define my 4 digit password
 		Given I provide a valid DNI
  		And I click on Crear cuenta
 		And on Name I inform 'Jhon' in registro
@@ -93,7 +77,7 @@ Feature: Onboarding
  		Then I see the text 'código QR'
  		
  	@define_six_digit_password
-  	Scenario: [AR] Onboarding Cross - Login : As an user, I want to define my six digit password
+  	Scenario: Onboarding - TC - 079 - [AR] Onboarding Cross - Login : As an user, I want to define my six digit password
 		Given I provide a valid DNI
  		And I click on Crear cuenta
 		And on Name I inform 'Jhon' in registro
@@ -121,7 +105,7 @@ Feature: Onboarding
  		Then I see the text 'Crear tu clave de pagos de 4 dígitos'
  		
  	@screen_categorias
-  	Scenario: [AR] Onboarding Cross - Login : As an user, I want to validate the Estás en alguna de estas categorías? screen
+  	Scenario: Onboarding - TC - 080 - [AR] Onboarding Cross - Login : As an user, I want to validate the Estás en alguna de estas categorías? screen
 		Given I provide a valid DNI
  		And I click on Crear cuenta
 		And on Name I inform 'Jhon' in registro
@@ -139,7 +123,7 @@ Feature: Onboarding
 		Then I see the text 'Ahora nos gustaría conocerte mejor.'
 		
 	@screen_terms_conditions
-  	Scenario: [AR] Onboarding Cross - Login : As an user, I want to validate Términos y Condiciones screen
+  	Scenario: Onboarding - TC - 081 - [AR] Onboarding Cross - Login : As an user, I want to validate Términos y Condiciones screen
 		Given I provide a valid DNI
  		And I click on Crear cuenta
 		And on Name I inform 'Jhon' in registro
@@ -152,11 +136,11 @@ Feature: Onboarding
 		When I check the first checkbox in Terms and Conditions
 		
 	@validation_actual_email
-  	Scenario: [AR] Change email : As an user, I want to validate the check email validation for Email actual
+  	Scenario: Onboarding - TC - 082 - [AR] Change email : As an user, I want to validate the check email validation for Email actual
     	And select if the option "I ready have an account"
     	And fill in the documentation field with the document number "33850984" 
     	And click on button ingressar
-    	And and when loading a page I inform the "192837"
+    	When loading a page I inform the "192837"
     	Then check if the login to the application was performed, observing the following "Saldo actual"
 		And I click on settings menu in my name
 		And I click on my email
@@ -167,11 +151,11 @@ Feature: Onboarding
 		Then I see the text '¡Ups! Parece que algo salió mal'
 
 	@validation_nuevo_email
-  	Scenario: [AR] Change email : As an user, I want to validate the Digitar el código enviado a screen
+  	Scenario: Onboarding - TC - 083 - [AR] Change email : As an user, I want to validate the Digitar el código enviado a screen
     	And select if the option "I ready have an account"
     	And fill in the documentation field with the document number "33850984" 
     	And click on button ingressar
-    	And and when loading a page I inform the "192837"
+    	When loading a page I inform the "192837"
     	Then check if the login to the application was performed, observing the following "Saldo actual"
 		And I click on settings menu in my name
 		And I click on my email
@@ -182,11 +166,11 @@ Feature: Onboarding
 		Then I see the text 'Digitar el código enviado a:'
 		
 	@validation_nuevo_codigo
-  	Scenario: [AR] Change email : As an user, I want to see the link Recibir el código nuevamente
+  	Scenario: Onboarding - TC - 084 - [AR] Change email : As an user, I want to see the link Recibir el código nuevamente
     	And select if the option "I ready have an account"
     	And fill in the documentation field with the document number "33850984" 
     	And click on button ingressar
-   	 	And and when loading a page I inform the "192837"
+   	 	When loading a page I inform the "192837"
     	Then check if the login to the application was performed, observing the following "Saldo actual"
 		And I click on settings menu in my name
 		And I click on my email
@@ -196,13 +180,13 @@ Feature: Onboarding
 		And I click on Continuar
 		Then I see the text 'Recibir el código nuevamente'
 		
-	#Necessário email existente
+	#Valid email required
 	@validation_email_other_account
-  	Scenario: [AR] Change email : As an user, I want to inform an email already in use
+  	Scenario: Onboarding - TC - 086 - [AR] Change email : As an user, I want to inform an email already in use
     	And select if the option "I ready have an account"
     	And fill in the documentation field with the document number "33850984" 
     	And click on button ingressar
-    	And and when loading a page I inform the "192837"
+    	When loading a page I inform the "192837"
     	Then check if the login to the application was performed, observing the following "Saldo actual"
 		And I click on settings menu in my name
 		And I click on my email
@@ -213,23 +197,39 @@ Feature: Onboarding
 		Then I see the text '¡Ups! Parece que algo salió mal'
 		
 	@validation_my_initials
-  	Scenario: [AR][CO][PE] Name initials reversed in profile - As a user, I want to see my initials in Home screen 
+  	Scenario: Onboarding - TC - 087 - [AR][CO][PE] Name initials reversed in profile - As a user, I want to see my initials in Home screen 
     	And select if the option "I ready have an account"
     	And fill in the documentation field with the document number "33850984" 
     	And click on button ingressar
-    	And and when loading a page I inform the "192837"
+    	When loading a page I inform the "192837"
     	Then check if the login to the application was performed, observing the following "Saldo actual"
 		Then I see the text 'SC'
 		
 	@validation_my_initials_and_name_in_menu_screen
-  	Scenario: [AR][CO][PE] Name initials reversed in profile - As a user, I want to see my initials in menu
+  	Scenario: Onboarding - TC - 088 - [AR][CO][PE] Name initials reversed in profile - As a user, I want to see my initials in menu
     	And select if the option "I ready have an account"
     	And fill in the documentation field with the document number "33850984" 
     	And click on button ingressar
-    	And and when loading a page I inform the "192837"
+    	When loading a page I inform the "192837"
     	Then check if the login to the application was performed, observing the following "Saldo actual"
     	And I click on settings menu in my name
 		Then I see my name 'Silva Cristiano' and my initials 'SC' in menu screen
+		
+	@valid_crear_cuenta_disabled
+  	Scenario: Onboarding - TC - 090 - [AR] Validate button create account disabled when entering an incomplete document ARG
+		Given I provide a DNI '1234'
+		Then button Crear cuenta is disabled
+		
+	@valid_language_argentina
+  	Scenario: Onboarding - TC - 091 - [AR] Validate language of ARG terms
+  		Given I provide a valid DNI
+ 		And I click on Crear cuenta
+		And on Name I inform 'Jhon' in registro
+		And on Surname I inform 'Test' in registro
+		And on Email I inform 'teste@gmail.com' in registro
+		And on Birth date I inform '14031996' in registro
+		And I click on Continuar
+		Given I see the text 'TÉRMINOS Y CONDICIONES DE USO SUPERDIGITAL ARGENTINA S.A.U®'
 		
 		
 

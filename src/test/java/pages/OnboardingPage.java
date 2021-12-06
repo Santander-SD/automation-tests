@@ -1,12 +1,9 @@
 package pages;
 
 import static com.codeborne.selenide.Selenide.$;
-
 import java.util.Random;
-
 import org.junit.Assert;
 import org.openqa.selenium.By;
-
 import com.codeborne.selenide.SelenideElement;
 
 public class OnboardingPage {

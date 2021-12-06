@@ -103,7 +103,7 @@ Feature: Login
     And password, an iteration will be performed with a click on I forgot my password button
     And click button create a new password
     And an email will be sent containing information to create a new password <messageOmScreen>
-    And when entering the email, check if it was sent, click on the link and follow the steps
+    And entering the email, check if it was sent, click on the link and follow the steps
     Then the operation ends with the creation of a new password <new_password>
 
     Examples:

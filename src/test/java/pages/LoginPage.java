@@ -1,11 +1,9 @@
 package pages;
 
 import static com.codeborne.selenide.Selenide.$;
-
 import static com.codeborne.selenide.Selenide.$$;
 import org.openqa.selenium.By;
 import java.io.IOException;
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import static com.codeborne.selenide.Condition.*;
@@ -262,7 +260,7 @@ public class LoginPage extends MenuPage {
         menuEndSession();
         if(confirm.equals("true")){    
             menuExitSession();
-            labelScreenHomeLogin.shouldBe(visible, Duration.ofMillis(6000));
+            labelScreenHomeLogin.shouldBe(visible);
             this.statusLogout = labelScreenHomeLogin.text();
         }else{
             menuAbortExitSession();

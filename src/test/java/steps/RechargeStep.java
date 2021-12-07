@@ -1,5 +1,6 @@
 package steps;
 
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -80,6 +81,11 @@ public class RechargeStep extends RechargePage {
 	@When("select the value {string}")
 	public void selectTheValue(String valueRecharge) {
 		selectValueTheRecharge(valueRecharge);
+	}
+
+	@And("^I confirm the transaction on Mobile$")
+	public void iConfirmTheTransactionOnMobile() throws Throwable {
+		throw new PendingException();
 	}
 
 

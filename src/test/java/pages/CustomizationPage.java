@@ -12,7 +12,7 @@ public class CustomizationPage extends MenuPage {
     private String statusConfirmationCreationNickName = "";
 
     private SelenideElement inputNickName = $("input[data-testid]");
-    private SelenideElement btnCeateNickName = $("button[data-testid='submitButton']");
+    private SelenideElement btnCreateNickName = $("button[data-testid='submitButton']");
     private SelenideElement labelAlertCreationNickname =$(ByAttribute.xpath("/html/body/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[2]/div/div[2]/div/div/div/h1"));
 
 
@@ -24,7 +24,8 @@ public class CustomizationPage extends MenuPage {
        menuAccessProfileMenu();
        menuCreateNickName();
        inputNickName.setValue(nickName);
-       btnCeateNickName.click();
+       btnCreateNickName.shouldBe(visible);
+       btnCreateNickName.click();
        labelAlertCreationNickname.shouldBe(visible);
        this.statusConfirmationCreationNickName =  labelAlertCreationNickname.text();
     }

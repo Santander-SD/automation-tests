@@ -98,13 +98,21 @@ public class LoginStep {
     }
 
     @When("accessing the user profile menu and choosing the option to complete the assignment and {string} the request")
-    public void accessingTheUserProfileMenuAndChoosingTheOptionToCompleteTheAssignmentAndTheRequest(String confirm) throws IOException {
+    public void accessingTheUserProfileMenuAndChoosingTheOptionToCompleteTheAssignmentAndTheRequest(String confirm)
+            throws IOException {
         login.logoutApplication(confirm);
     }
 
-    @Then("check if the login to the application was performed, observing the following {string}")
-    public void checkIfTheLoginToTheApplicationWasPerformedObservingTheFollowing(String message) throws IOException {
-        assertEquals(login.validateLogin(), message);
+    @When("i enter the {string} and click on the eye {string}")
+    public void iEnterTheAndClickOnTheEye(String string, String string2) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("check if the login to the application was performed, observing the following  {string}")
+    public void checkIfTheLoginToTheApplicationWasPerformedObservingTheFollowing(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
     }
 
     @Then("the operation will not be continued, as the igress button will not be enabled {string}")

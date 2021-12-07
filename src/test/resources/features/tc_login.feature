@@ -6,7 +6,7 @@ Feature: Login
   Background:
     Given are on the application's login page
 
-  Scenario Outline: Login - TC - 001 .. 003 - Into the application
+  Scenario Outline: Login - TC - 001 - 003 - ID60 - Success_Flow_I_Standard_Flow_of_Success - ID63 - Exception_Flow_I_Incorrect_password - ID64 - Exception_Flow_II_Incorrect_Document_number  
     When select the country <country>
     And select if the option <optionAcess>
     And fill in the documentation field with the document number <documentation>
@@ -15,24 +15,24 @@ Feature: Login
     Then check if the login to the application was performed, observing the following <message>
 
 
-    @Exception_Flow_I_Incorrect_password
+    @ID63_Exception_Flow_I_Incorrect_password
     Examples:
       | country     | optionAcess               | documentation | password | message                         |
       | 'Argentina' | "I ready have an account" | "33850984"    | "123456" | "¡Atención, datos incorrectos!" |
 
-    @Exception_Flow_II_Incorrect_Document_number
+    @ID64_Exception_Flow_II_Incorrect_Document_number
     Examples:
       | country     | optionAcess               | documentation | password | message                         |
       | 'Argentina' | "I ready have an account" | "00001111"    | "123456" | "¡Atención, datos incorrectos!" |
 
-    @Success_Flow_I_Standard_Flow_of_Success
+    @ID60_Success_Flow_I_Standard_Flow_of_Success
     Examples:
       | country     | optionAcess               | documentation | password | message        |
       | 'Argentina' | "I ready have an account" | "33850984"    | "192837" | "Saldo actual" |
 
 
-  @Exception_Flow_III_Incorrect_Country
-  Scenario Outline: Login - TC - 004 - Exception Flow III Incorrect Country
+  @ID65_Exception_Flow_III_Incorrect_Country
+  Scenario Outline: Login - TC - 004 - ID65 - Exception Flow III Incorrect Country
     When select the country <country>
     And select if the option <optionAcess>
     And fill in the documentation field with the document number <documentation>
@@ -43,21 +43,21 @@ Feature: Login
       | country   | optionAcess               | documentation | button enabled |
       | 'Uruguay' | "I ready have an account" | "00001111"    | "false"        |
 
-  @Validate_"eye"_button_to_view_the_entered_password
-  Scenario Outline: Login - TC - 005 - Validate "eye" button to view the entered password
+  @ID69_Validate_"eye"_button_to_view_the_entered_password
+  Scenario Outline: Login - TC - 005 - ID69 - Validate "eye" button to view the entered password
     When select the country <country>
     And select if the option <optionAcess>
     And fill in the documentation field with the document number <documentation>
     And click on button ingressar
-    And ienter the <password> and click on the eye <show password>
+    And enter the <password> and click on the eye <show password>
     Then the password entered will be displayed to verify <password_entered>
 
     Examples:
       | country     | optionAcess               | documentation | password | show password | password_entered |
       | 'Argentina' | "I ready have an account" | "33850984"    | "12345"  | "true"        | "12345"          |
 
-  @Remember_my_password
-  Scenario Outline: Login - TC - 006 - Remember my password
+  @ID70_Remember_my_password
+  Scenario Outline: Login - TC - 006 -ID70 - Remember my password
     When select the country <country>
     And select if the option <optionAcess>
     And fill in the documentation field with the document number <documentation>
@@ -68,8 +68,8 @@ Feature: Login
       | country     | optionAcess               | documentation | enableButton |
       | 'Argentina' | "I ready have an account" | "33850984"    | 'true'       |
 
-  @Validate_"I_forgot_my_password"_button
-  Scenario Outline: Login - TC - 007 - Validate "I forgot my password" button
+  @ID68_Validate_"I_forgot_my_password"_button
+  Scenario Outline: Login - TC - 007 - ID68 - Validate "I forgot my password" button
     When select the country <country>
     And select if the option <optionAcess>
     And fill in the documentation field with the document number <documentation>
@@ -81,8 +81,8 @@ Feature: Login
       | country     | optionAcess               | documentation | message                        |
       | 'Argentina' | "I ready have an account" | "33850984"    | '¿No recuerdas tu contraseña?' |
 
-  @Success_Flow_III_Password_successfully_blocked_after_three_incorrect_attempts
-  Scenario Outline: Login - TC - 008 - Success Flow III - Password successfully blocked after three incorrect attempts
+  @ID62_Success_Flow_III_Password_successfully_blocked_after_three_incorrect_attempts
+  Scenario Outline: Login - TC - 008 - ID62 - Success Flow III - Password successfully blocked after three incorrect attempts
     When select the country <country>
     And select if the option <optionAcess>
     And fill in the documentation field with the document number <documentation>
@@ -94,8 +94,8 @@ Feature: Login
       | country     | optionAcess               | documentation | password | repeatPassword | message |
       | 'Argentina' | "I ready have an account" | "33850984"    | "192536" | 3              | "true"  |
 
-  @Success_Flow_IV_Data_successfully_recalled_after_first_login
-  Scenario Outline: Login - TC - 009- Success Flow IV - Data successfully recalled after first login
+  @ID66_Success_Flow_IV_Data_successfully_recalled_after_first_login
+  Scenario Outline: Login - TC - 009 - ID66 - Success Flow IV - Data successfully recalled after first login
     When select the country <country>
     And select if the option <optionAcess>
     And fill in the documentation field with the document number <documentation>
@@ -110,21 +110,21 @@ Feature: Login
       | country     | optionAcess               | documentation | messageOmScreen                                     | new_password       |
       | 'Argentina' | "I ready have an account" | "33850984"    | "Te enviamos un email para que crees tu contraseña" | 'new_password.txt' |
 
-  @Scenario:_Validate_show_ARG_password
-  Scenario Outline: Login - TC - 010 - Scenario:_Validate_show_ARG_password
+  @ID67_Scenario:_Validate_show_ARG_password
+  Scenario Outline: Login - TC - 010 - ID67 - Scenario:_Validate_show_ARG_password
     When select the country <country>
     And select if the option <optionAcess>
     And fill in the documentation field with the document number <documentation>
     And click on button ingressar
-    And enter the <password> and click on the eye <show password>
+    And i enter the <password> and click on the eye <show password>
     Then check if the login to the application was performed, observing the following  <message>
 
     Examples:
       | country     | optionAcess               | documentation | password           | show password | message   |
       | 'Argentina' | "I ready have an account" | "33850984"    | "new_password.txt" | "true"        | "new_password.txt" |
 
-  @Success_Flow_II_Login_successfully_after_unlocked_password
-  Scenario Outline: Login - TC - 011- Success Flow II - Login successfully after unlocked password
+  @ID61_Success_Flow_II_Login_successfully_after_unlocked_password
+  Scenario Outline: Login - TC - 011 - ID61 - Success Flow II - Login successfully after unlocked password
     When select the country <country>
     And select if the option <optionAcess>
     And fill in the documentation field with the document number <documentation>
@@ -136,8 +136,8 @@ Feature: Login
       | country     | optionAcess               | documentation | password         | message        |
       | 'Argentina' | "I ready have an account" | "33850984"    | new_password.txt | "Saldo actual" |
 
-  @Create_alias
-  Scenario Outline: Login - TC - 012 - Create alias
+  @ID71_Create_alias
+  Scenario Outline: Login - TC - 012 - ID71 - Create alias
     When select the country <country>
     And select if the option <optionAcess>
     And fill in the documentation field with the document number <documentation>
@@ -152,8 +152,8 @@ Feature: Login
       | 'Argentina' | "I ready have an account" | "33850984"    | "192837" | "TestAutomated" | "Confirma esta operación desde tu celular" | "TestAutomated" |
 
 
-  @Show_menu_alias_after_login
-  Scenario Outline: Login - TC - 013 - Show menu alias after login
+  @ID72_Show_menu_alias_after_login
+  Scenario Outline: Login - TC - 013 - ID72 - Show menu alias after login
     When select the country <country>
     And select if the option <optionAcess>
     And fill in the documentation field with the document number <documentation>
@@ -166,7 +166,7 @@ Feature: Login
       | 'Argentina' | "I ready have an account" | "33850984"    | "192837" | "TestAutomated" |
 
   @logout
-  Scenario Outline: Login - TC - 014 - happy path logout
+  Scenario Outline: Login - TC - 014 - 015 - ID73 - happy path logout - ID74 - logout_with_valid_user
     When select the country <country>
     And select if the option <optionAcess>
     And fill in the documentation field with the document number <documentation>
@@ -175,12 +175,12 @@ Feature: Login
     And accessing the user profile menu and choosing the option to complete the assignment and <confirm> the request
     Then will be redirected to main page to login <messageHomeLogin>
 
-    @happy_path_logout
+    @ID74_happy_path_logout
     Examples:
       | country     | optionAcess               | documentation | password | confirm | messageHomeLogin                                |
       | 'Argentina' | "I ready have an account" | "33850984"    | "192837" | "true"  | "¡Hola! Llegamos para hacer tu vida más simple" |
 
-    @logout_with_valid_user
+    @ID75_logout_with_valid_user
     Examples:
       | country     | optionAcess               | documentation | password | confirm | messageHomeLogin      |
       | 'Argentina' | "I ready have an account" | "33850984"    | "192837" | "false" | "SC\nSilva Cristiano" |

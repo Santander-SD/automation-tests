@@ -7,7 +7,7 @@ Feature: Transport Recharge
     Given i'm logged into the application
     When click on Recargar
 
-  Scenario Outline: Transporte Recharge - TC - 001 .. 005 - Standard Flow of Success
+  Scenario Outline: Transporte Recharge - TC - 124 - Standard Flow of Success
     Given I see page with ¿Qué recarga vas a hacer?
     When click on card Realizar una recarga de transporte
     And select the registered cards
@@ -16,26 +16,87 @@ Feature: Transport Recharge
     And click on button Continuar
     And confirm process
     Then I see the confirmation message with <message>
+    And I confirm the transaction on Mobile
 
     @Recharge_flow_of_success
     Examples: 
       | valueSelect | message                                    |
       | "60,00"     | "Confirma esta operación desde tu celular" |
 
+  Scenario Outline: Transporte Recharge - TC - 125 - Success Flow I - Standard Flow of Success
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de transporte
+    And select the registered cards
+    And Click on button Recargar tarjeta
+    And select the value <valueSelect>
+    And click on button Continuar
+    And confirm process
+    Then I see the confirmation message with <message>
+    And I confirm the transaction on Mobile
+
     @Recharge_validate_voucher_information
     Examples: 
       | valueSelect | message                                    |
       | "60,00"     | "Confirma esta operación desde tu celular" |
+
+  Scenario Outline: Transporte Recharge - TC - 126 - Success Flow II - Validate Voucher Information
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de transporte
+    And select the registered cards
+    And Click on button Recargar tarjeta
+    And select the value <valueSelect>
+    And click on button Continuar
+    And confirm process
+    Then I see the confirmation message with <message>
+    And I confirm the transaction on Mobile
 
     @Recharge_share_voucher_successfully
     Examples: 
       | valueSelect | message                                    |
       | "60,00"     | "Confirma esta operación desde tu celular" |
 
+  Scenario Outline: Transporte Recharge - TC - 127 - Success Flow III - Share voucher successfully
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de transporte
+    And select the registered cards
+    And Click on button Recargar tarjeta
+    And select the value <valueSelect>
+    And click on button Continuar
+    And confirm process
+    Then I see the confirmation message with <message>
+    And I confirm the transaction on Mobile
+
     @Recharge_validate_perform_new_reload_button
     Examples: 
       | valueSelect | message                                    |
       | "60,00"     | "Confirma esta operación desde tu celular" |
+
+  Scenario Outline: Transporte Recharge - TC - 128 - Success Flow IV - Validate "perform new reload" button
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de transporte
+    And select the registered cards
+    And Click on button Recargar tarjeta
+    And select the value <valueSelect>
+    And click on button Continuar
+    And confirm process
+    Then I see the confirmation message with <message>
+    And I confirm the transaction on Mobile
+
+    @Recharge_Change_card_tag_name
+    Examples: 
+      | valueSelect | message                                    |
+      | "60,00"     | "Confirma esta operación desde tu celular" |
+
+  Scenario Outline: Transporte Recharge - TC - 138 - Success Flow VII - Change card tag name
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de transporte
+    And select the registered cards
+    And Click on button Recargar tarjeta
+    And select the value <valueSelect>
+    And click on button Continuar
+    And confirm process
+    Then I see the confirmation message with <message>
+    And I confirm the transaction on Mobile
 
     @Recharge_Change_card_tag_name
     Examples: 

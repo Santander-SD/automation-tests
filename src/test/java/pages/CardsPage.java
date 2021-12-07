@@ -13,6 +13,8 @@ import org.openqa.selenium.By;
 
 import com.codeborne.selenide.SelenideElement;
 
+import utils.Utils;
+
 
 public class CardsPage {
 
@@ -33,10 +35,10 @@ public class CardsPage {
 	private SelenideElement inputNombreTarjetaVirtual = $(By.xpath("//input[@value='']"));		
 	private SelenideElement inputConfirmar = $(By.xpath("//*/text()[normalize-space(.)='Confirmar']/parent::*"));
 	private SelenideElement inputContinuar = $(By.xpath("//*/text()[normalize-space(.)='Continuar']/parent::*"));
-	private SelenideElement messageLayout = $(By.xpath("//div[2]/div[3]/div/div"));	
 	private SelenideElement muiSwitchCard = $(By.xpath("//button[2]/div[2]/span"));
 	private SelenideElement mainCard = $(By.xpath("//*/text()[normalize-space(.)='Titular']/parent::*"));
 	private SelenideElement virtualCard = $(By.xpath("//*/text()[normalize-space(.)='Virtual']/parent::* | (.//*[normalize-space(text()) and normalize-space(.)='Saldo tarjeta'])[2]/following::div[4]"));
+	private SelenideElement justLabelVirtualCard = $(By.xpath("//*/text()[normalize-space(.)='Virtual']/parent::*"));
 
 
 	public void selectOption(String menuOption) {
@@ -67,13 +69,31 @@ public class CardsPage {
     	int b = 1;
     	while(a) {
     		b += 1;
-    		System.out.println(b);
-    		
+
     		if(checkSwitchCard()) {
     			System.out.println("Check Enable");
     			genericElement = $(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Saldo tarjeta'])["+Integer.toString(b+1)+"]/following::div[2]"));
     			genericElement.shouldBe(visible).click();
     		}else {
+    			a= false;
+    		}
+    	}
+    }
+    
+    public void checkForAnEnableVirtualCard() {
+    	virtualCard.shouldBe(visible).click();
+    	
+    	Boolean a = true;
+    	int b = 1;
+    	while(a) {
+    		b += 1;
+    		
+    		if(!justLabelVirtualCard.isDisplayed()) {
+    			genericElement = $(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Saldo tarjeta'])["+Integer.toString(b+1)+"]/following::div[2]"));
+    			genericElement.shouldBe(visible).click();
+    			sleep(1000);
+    		}else {
+    			this.justLabelVirtualCard.click();
     			a= false;
     		}
     	}
@@ -118,7 +138,6 @@ public class CardsPage {
     
     public void checkTextPresent(String value) {
     	sleep(4000);
-    	messageLayout.shouldBe(visible);
     	assertTrue($(By.xpath("//*[contains(text(), '"+value.toString()+"')]")).exists());
     }
     
@@ -155,7 +174,6 @@ public class CardsPage {
     	return a; 
     }
     
-    
     public void insertVirtualNameCard() {
     	String name = utils.Utils.generateRadomName();
     	inputNombreTarjetaVirtual.shouldBe(visible).sendKeys(name);
@@ -163,8 +181,8 @@ public class CardsPage {
     
     public void purchasingTransactionsvalidation(ArrayList<String> transactionsList) {
     	sleep(1000);
-    	for (int i = 0; i < transactionsList.size(); i++) {    		
-    		checkTextPresent(transactionsList.get(i));    		
+    	for (int i = 0; i < transactionsList.size(); i++) {    
+    		Utils.validateMessage(transactionsList.get(i)); 		
 		} 
     }
 }

@@ -7,10 +7,10 @@ Feature: Cards
     Given are on the application's login page
     
 	@tc001_Validate_that_the_card_has_been_delivered
-  Scenario Outline: Cards - TC - 0001 - [WEB] - happy path - Validate that the card has been delivered
+  Scenario Outline: Cards - TC - 001 - [WEB] - happy path - Validate that the card has been delivered
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
-		And I select 'Menú tarjeta' for my <typeCard> card		
+		And I select 'Menú tarjeta' for my <typeCard> card
     And the physical card has tracking on it
     When I click on button <Seguir la Entrega>
     Then I have to be informed of delivery states of the physical card in any moment
@@ -20,7 +20,7 @@ Feature: Cards
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"    |  
 
 	@tc002_Validate_Cancel_Virtual_Card
-  Scenario Outline: Cards - TC - 0002 - [WEB] - happy path - Validate layout for Cancel Virtual Card
+  Scenario Outline: Cards - TC - 002 - [WEB] - happy path - Validate layout for Cancel Virtual Card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my <typeCard> card
@@ -38,10 +38,10 @@ Feature: Cards
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" | "Validar la operación en tu celular" |	
       	
 	@tc003_Validate_main_card_replacement
-  Scenario Outline: Cards - TC - 0003 - [WEB] - happy path - Validate layout for Main Card Replacement
+  Scenario Outline: Cards - TC - 003 - [WEB] - happy path - Validate layout for Main Card Replacement
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
-		And I select 'Menú tarjeta' for my <typeCard> card		
+		And I select 'Menú tarjeta' for my <typeCard> card
 		When I click on 'Solicitar reemplazo'
 		And I inform the reason <reason> for replace card
 		And I inform the delivery address
@@ -55,7 +55,7 @@ Feature: Cards
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"    | "Plástico roto"  |
       		
 	@tc004_Validate_forgot_PIN
-  Scenario Outline: Cards - TC - 0004 - [WEB] - happy path - Validate forgot PIN
+  Scenario Outline: Cards - TC - 004 - [WEB] - happy path - Validate forgot PIN
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my <typeCard> card		
@@ -70,7 +70,7 @@ Feature: Cards
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"    | "Esta operación solo se puede hacer por celular"|
       
 	@tc005_Cards_Validate_view_from_main_card_statement
-  Scenario Outline: Cards - TC - 0005 - [WEB] - happy path - Validate view from main card statement
+  Scenario Outline: Cards - TC - 005 - [WEB] - happy path - Validate view from main card statement
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		When I select 'Movimientos' for my <typeCard> card
@@ -81,18 +81,18 @@ Feature: Cards
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"   |       
 
 	@tc006_Cards_Validate_view_from_virtual_card_statement
-  Scenario Outline: Cards - TC - 0006 - [WEB] - happy path - Validate view from virtual card statement
+  Scenario Outline: Cards - TC - 006 - [WEB] - happy path - Validate view from virtual card statement
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
-		When I select 'Movimientos' for my <typeCard> card
+		When I select 'Movimientos' for my enable <typeCard> card
 		Then should be displayed all purchasing transactions from my virtual card
 		
     Examples:
       | country     | documentation | password  | menu       | typeCard  |
-      | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |  		
+      | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |
 	
 	@tc007_Validate_view_from_virtual_card_details @Flaky
-  Scenario Outline: Cards - TC - 0007 - [WEB] - happy path - Validate view from virtual card details
+  Scenario Outline: Cards - TC - 007 - [WEB] - happy path - Validate view from virtual card details
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my <typeCard> card
@@ -106,10 +106,10 @@ Feature: Cards
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" | "Validar la operación en tu celular" |		
 		
 	@tc008_Validate_withdraw_money_from_virtual_card @Flaky
-  Scenario Outline: Cards - TC - 0008 - [WEB] - happy path - Validate withdraw money from virtual card
+  Scenario Outline: Cards - TC - 008 - [WEB] - happy path - Validate withdraw money from virtual card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
-		And I select 'Menú tarjeta' for my <typeCard> card		
+		And I select 'Menú tarjeta' for my enable <typeCard> card
 		And I already have money on my virtual card
 		When I click on 'Enviar saldo a tu cuenta'
 		And I insert a withdraw value <value>
@@ -124,7 +124,7 @@ Feature: Cards
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" | "Validar la operación en tu celular" |	"1,11" |	
 
 	@tc009_Validate_recharge_virtual_card
-  Scenario Outline: Cards - TC - 0009 - [WEB] - happy path - Validate layout for Recharge Virtual Card
+  Scenario Outline: Cards - TC - 009 - [WEB] - happy path - Validate layout for Recharge Virtual Card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my <typeCard> card
@@ -141,7 +141,7 @@ Feature: Cards
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" | "Validar la operación en tu celular" |	"1,13" |
 
 	@tc010_Validate_Ask_for_a_Virtual_Cards @Flaky
-  Scenario Outline: Cards - TC - 0010 - [WEB] - happy path - Validate layout for Ask Virtual Card
+  Scenario Outline: Cards - TC - 010 - [WEB] - happy path - Validate layout for Ask Virtual Card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my <typeCard> card
@@ -157,22 +157,22 @@ Feature: Cards
       | "Colombia" | "74279144"    | "192837"  | "Tarjetas" | "virtual" |
 
 	@tc011_Validate_block_virtual_card @Flaky
-  Scenario Outline: Cards - TC - 0011 - [WEB] - happy path - Validate layout for Block Virtual Card
+  Scenario Outline: Cards - TC - 011 - [WEB] - happy path - Validate layout for Block Virtual Card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And already activate my virtual card
 		And I select 'Menú tarjeta' for my <typeCard> card
 		When I click on 'Bloqueo Temporal'
 		And I accept the terms to block virtual card
-		Then the main card should be blocked
+		Then the virtual card should be blocked
 		And the switch button should be updated
 		
     Examples:
-      | country     | documentation | password  | menu       | typeCard  |
-      | "Colombia"  | "74279144"    | "192837"  | "Tarjetas" | "virtual" |
+      | country      | documentation | password  | menu       | typeCard  |
+      | "Argentina"  | "29709517"    | "192837"  | "Tarjetas" | "virtual" |
 
 	@tc012_Validate_unblock_virtual_card
-  Scenario Outline: Cards - TC - 0012 - [WEB] - happy path - Validate layout for Unblock Virtual Card
+  Scenario Outline: Cards - TC - 012 - [WEB] - happy path - Validate layout for Unblock Virtual Card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my <typeCard> card
@@ -184,10 +184,10 @@ Feature: Cards
 		
     Examples:
       | country     | documentation | password  | menu       | typeCard  |
-      | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |		
+      | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |
       		      
 	@tc013_Validate_Ask_for_a_Main_Card @Flaky
-  Scenario Outline: Cards - TC - 0013 - [WEB] - happy path - Validate layout for Ask for a Main Card
+  Scenario Outline: Cards - TC - 013 - [WEB] - happy path - Validate layout for Ask for a Main Card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I click on 'Entendido'
@@ -197,8 +197,8 @@ Feature: Cards
 		Then should display a screen with the message '¡Listo! En breve recibirás tu tarjeta física'
 
     Examples:
-      | country     | documentation | password  | menu      |
-      | "Colombia" | "29715809"    | "192837"  | "Tarjetas" |
+      | country     | documentation | password  | menu       |
+      | "Colombia"  | "70369703"    | "192837"  | "Tarjetas" |
 
 	@tc014_Validate_Cancel_Main_Card
   Scenario Outline: Cards - TC - 0014 - [WEB] - happy path - Validate layout for Cancel Main Card

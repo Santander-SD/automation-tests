@@ -1,6 +1,7 @@
 package steps;
 
 import static com.codeborne.selenide.Selenide.sleep;
+
 import static org.junit.Assert.assertTrue;
 import static utils.Utils.generatePendingTest;
 
@@ -12,6 +13,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.CardsPage;
+import utils.Utils;
 
 
 public class CardsStep {
@@ -21,13 +23,13 @@ public class CardsStep {
 
 
 	@When("I click on button <Seguir la Entrega>")
-	public void iClickOnButtonSeguirLaEntrega() {
-	    
+	public void iClickOnButtonSeguirLaEntrega() throws Exception {
+		generatePendingTest("It depends of test mass");
 	}
 	
 	@Given("the physical card has tracking on it")
-	public void thePhysicalCardHasTrackingOnIt() {
-		System.out.println("It depends of test mass");
+	public void thePhysicalCardHasTrackingOnIt() throws Exception {
+		generatePendingTest("It depends of test mass");
 	}
 	
 	@Then("I have to be informed of delivery states of the physical card in any moment")
@@ -103,9 +105,7 @@ public class CardsStep {
 	public void iSelectFormMyMainCard(String buttonOption, String typeCard) {
 		if(typeCard.equals("main")) {
 			cards.clickOnMainCard();
-		}else {
-			System.out.println("COUNTRY:"+ globalCountry);
-			
+		}else {			
 			if(globalCountry.equals("Argentina")) {
 				cards.checkVirtualCardBlocked();				
 			}else {
@@ -119,6 +119,25 @@ public class CardsStep {
 			cards.clickOnMenuTarjetaButton();
 		}
 	}
+	
+	@When("I select {string} for my enable {string} card")
+	public void iSelectFormMyEnableMainCard(String buttonOption, String typeCard) {
+		if(typeCard.equals("main")) {
+			cards.clickOnMainCard();
+		}else {			
+			if(globalCountry.equals("Argentina")) {
+				cards.checkForAnEnableVirtualCard();				
+			}else {
+				cards.clickOnGenericVirtualCard();
+			}
+		}
+		
+		if(buttonOption.equals("Movimientos")) {			
+			cards.clickOnMovimientosButton();
+		}else {			
+			cards.clickOnMenuTarjetaButton();
+		}
+	}	
 	
 	@Then("should be displayed all purchasing transactions from my main card")
 	public void shouldBeDisplayedAllPurchasingTransactionsFromMyMainCard() {
@@ -143,14 +162,14 @@ public class CardsStep {
 	}
 
 	@When("I confirm operation on the mobile app")
-	public void iConfirmOperationOnTheMobileApp() {
-		System.out.println("It depends of mobile app operation");
+	public void iConfirmOperationOnTheMobileApp() throws Exception {
 		utils.Utils.setAllureDetailsAboutTest("It depends of mobile app operation");
+		generatePendingTest("It depends of mobile app operation");
 	}
 	
 	@When("I see the message {string}")
 	public void iSeeThe(String message) {
-		cards.checkTextPresent(message);
+		Utils.validateMessage(message);
 	}
 	
 	@Then("I should see all virtual card details")
@@ -218,14 +237,14 @@ public class CardsStep {
 
 
 
-	@Then("the main card should be blocked")
-	public void theMainCardShouldBeBlocked() {
+	@Then("the virtual card should be blocked")
+	public void theVirtualCardShouldBeBlocked() {
 
 	}
 	
 	@Then("should display a screen with the message {string}")
 	public void shouldDisplayAScreenWithTheMessage(String message) {
-		cards.checkTextPresent(message);
+		Utils.validateMessage(message);
 	}
 
 	@Then("should be displayed all purchasing transactions from my virtual card")
@@ -306,6 +325,7 @@ public class CardsStep {
     
     @Then("the switch button should be updated")
     public void theSwitchButtonShouldBeUpdated() {
+    	sleep(2000);
     	assertTrue(cards.checkSwitchCard());
     }
 

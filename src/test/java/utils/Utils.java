@@ -99,8 +99,7 @@ public class Utils {
     }
     
 	public static void generatePendingTest(String message) throws Exception {
-		Allure.addAttachment("", message);
-		Allure.description(message);
+		Allure.addAttachment("", message);	
 		throw new io.cucumber.java.PendingException(message);
 	}
 	

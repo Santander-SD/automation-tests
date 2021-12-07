@@ -19,26 +19,8 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"    |  
 
-	@tc002_Validate_Cancel_Virtual_Card
-  Scenario Outline: Cards - TC - 002 - [WEB] - happy path - Validate layout for Cancel Virtual Card
-		And I'm logged in with the data <country>,<documentation> and <password>
-		And I'm on the <menu> page
-		And I select 'Menú tarjeta' for my <typeCard> card
-		When I click on 'Botón de baja'
-		And accept the terms
-		And I see the message <message>
-		And I confirm operation on the mobile app
-		Then I should see the message 'Listo! Tu tarjeta fue dada de baja'
-		And the virtual card should be cancelled
-		And I should be redirected to the [Home] page
-		And the cancelled virtual card on [Tarjetas] page should display message 'Tarjeta dada de baja'
-
-    Examples:
-      | country     | documentation | password  | menu       | typeCard  | message 															|
-      | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" | "Validar la operación en tu celular" |	
-      	
-	@tc003_Validate_main_card_replacement
-  Scenario Outline: Cards - TC - 003 - [WEB] - happy path - Validate layout for Main Card Replacement
+	@tc002_Validate_main_card_replacement
+  Scenario Outline: Cards - TC - 002 - [WEB] - happy path - Validate layout for Main Card Replacement
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my <typeCard> card
@@ -54,8 +36,8 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  | reason           |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"    | "Plástico roto"  |
       		
-	@tc004_Validate_forgot_PIN
-  Scenario Outline: Cards - TC - 004 - [WEB] - happy path - Validate forgot PIN
+	@tc003_Validate_forgot_PIN
+  Scenario Outline: Cards - TC - 003 - [WEB] - happy path - Validate forgot PIN
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my <typeCard> card		
@@ -68,7 +50,25 @@ Feature: Cards
     Examples:
       | country     | documentation | password  | menu       | typeCard  | message                                         |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"    | "Esta operación solo se puede hacer por celular"|
-      
+
+	@tc004_Validate_Cancel_Virtual_Card
+  Scenario Outline: Cards - TC - 004 - [WEB] - happy path - Validate layout for Cancel Virtual Card
+		And I'm logged in with the data <country>,<documentation> and <password>
+		And I'm on the <menu> page
+		And I select 'Menú tarjeta' for my <typeCard> card
+		When I click on 'Botón de baja'
+		And accept the terms
+		And I see the message <message>
+		And I confirm operation on the mobile app
+		Then I should see the message 'Listo! Tu tarjeta fue dada de baja'
+		And the virtual card should be cancelled
+		And I should be redirected to the [Home] page
+		And the cancelled virtual card on [Tarjetas] page should display message 'Tarjeta dada de baja'
+
+    Examples:
+      | country     | documentation | password  | menu       | typeCard  | message 															|
+      | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" | "Validar la operación en tu celular" |	
+      	     
 	@tc005_Cards_Validate_view_from_main_card_statement
   Scenario Outline: Cards - TC - 005 - [WEB] - happy path - Validate view from main card statement
 		And I'm logged in with the data <country>,<documentation> and <password>
@@ -140,8 +140,8 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  | message 															| value  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" | "Validar la operación en tu celular" |	"1,13" |
 
-	@tc010_Validate_Ask_for_a_Virtual_Cards @Flaky
-  Scenario Outline: Cards - TC - 010 - [WEB] - happy path - Validate layout for Ask Virtual Card
+	@tc016_Validate_Ask_for_a_Virtual_Cards @Flaky
+  Scenario Outline: Cards - TC - 016 - [WEB] - happy path - Validate layout for Ask Virtual Card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my <typeCard> card
@@ -171,8 +171,8 @@ Feature: Cards
       | country      | documentation | password  | menu       | typeCard  |
       | "Argentina"  | "29709517"    | "192837"  | "Tarjetas" | "virtual" |
 
-	@tc012_Validate_unblock_virtual_card
-  Scenario Outline: Cards - TC - 012 - [WEB] - happy path - Validate layout for Unblock Virtual Card
+	@tc010_Validate_unblock_virtual_card
+  Scenario Outline: Cards - TC - 010 - [WEB] - happy path - Validate layout for Unblock Virtual Card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my <typeCard> card
@@ -186,8 +186,8 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |
       		      
-	@tc013_Validate_Ask_for_a_Main_Card @Flaky
-  Scenario Outline: Cards - TC - 013 - [WEB] - happy path - Validate layout for Ask for a Main Card
+	@tc017_Validate_Ask_for_a_Main_Card @Flaky
+  Scenario Outline: Cards - TC - 017 - [WEB] - happy path - Validate layout for Ask for a Main Card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I click on 'Entendido'
@@ -200,8 +200,8 @@ Feature: Cards
       | country     | documentation | password  | menu       |
       | "Colombia"  | "70369703"    | "192837"  | "Tarjetas" |
 
-	@tc014_Validate_Cancel_Main_Card
-  Scenario Outline: Cards - TC - 0014 - [WEB] - happy path - Validate layout for Cancel Main Card
+	@tc012_Validate_Cancel_Main_Card
+  Scenario Outline: Cards - TC - 0012 - [WEB] - happy path - Validate layout for Cancel Main Card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my <typeCard> card

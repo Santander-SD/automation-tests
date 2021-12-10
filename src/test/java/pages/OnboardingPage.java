@@ -114,6 +114,10 @@ public class OnboardingPage {
     	Assert.assertFalse(ButtonCrearCuenta.isEnabled());
     }
     
+    public void ButtonContinueDisabled() {
+    	Assert.assertFalse(ButtonContinue.isEnabled());
+    }
+    
     public void clickRadioByText(String text) {
     	$(By.xpath("//*[contains(text(), '"+text+"')]")).click();
     }

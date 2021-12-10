@@ -140,4 +140,12 @@ public class OnboardingStep {
     public void buttoCrearCuentaIsDisabled() {
         onboarding.buttonCrearCuentaDisabled();
     }
+
+    @Then("button Continuar is disabled")
+    public void buttonContinuarIsDisabled() {
+    	onboarding.ButtonContinueDisabled();
+    }
+
+
+
 }

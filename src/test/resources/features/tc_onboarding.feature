@@ -7,6 +7,17 @@ Feature: Onboarding
 	Background:
     Given are on the application's login page
     When select the country 'Argentina'
+    
+    @invalid_email_for_approvement
+  	Scenario: Onboarding - TC - 075 - [AR] Onboarding Cross - Login : As an user, I want to provide my basic informations with an invalid email for approvement
+		Given I provide a valid DNI
+ 		And I click on Crear cuenta
+		And on Name I inform 'Jhon' in registro
+		And on Surname I inform 'Test' in registro
+		And on Email I inform 'teste123' in registro
+		And on Birth date I inform '14031996' in registro
+		And I click on Continuar
+		Then I see the text 'Email inválido'
 
   	@cell_number_screen
   	Scenario: Onboarding - TC - 076 - [AR] Onboarding Cross - As an user, I want to validate Cuál es tu número de celular? screen
@@ -141,7 +152,6 @@ Feature: Onboarding
     	And fill in the documentation field with the document number "33850984" 
     	And click on button ingressar
     	When loading a page I inform the "192837"
-    	Then check if the login to the application was performed, observing the following "Saldo actual"
 		And I click on settings menu in my name
 		And I click on my email
 		And on Email Actual I inform 'teste@gmail.com'
@@ -156,7 +166,6 @@ Feature: Onboarding
     	And fill in the documentation field with the document number "33850984" 
     	And click on button ingressar
     	When loading a page I inform the "192837"
-    	Then check if the login to the application was performed, observing the following "Saldo actual"
 		And I click on settings menu in my name
 		And I click on my email
 		And on Email Actual I inform 'tsttst@gmail.com'
@@ -171,7 +180,6 @@ Feature: Onboarding
     	And fill in the documentation field with the document number "33850984" 
     	And click on button ingressar
    	 	When loading a page I inform the "192837"
-    	Then check if the login to the application was performed, observing the following "Saldo actual"
 		And I click on settings menu in my name
 		And I click on my email
 		And on Email Actual I inform 'tsttst@gmail.com'
@@ -180,6 +188,20 @@ Feature: Onboarding
 		And I click on Continuar
 		Then I see the text 'Recibir el código nuevamente'
 		
+		@change_email
+  	Scenario: Onboarding - TC - 085 - [AR] Change email : As an user, I want to change my email so I can update my account
+    	And select if the option "I ready have an account"
+    	And fill in the documentation field with the document number "33850984" 
+    	And click on button ingressar
+    	When loading a page I inform the "192837"
+		And I click on settings menu in my name
+		And I click on my email
+		And on Email Actual I inform 'tsttst@gmail.com'
+		And on Nuevo Email I inform 'teste@hotmail.com'
+		And on Repetir Nuevo Email I inform 'teste@hotmail.com' 
+		And I click on Continuar
+		Then I see the text 'email successfully'
+		
 	#Valid email required
 	@validation_email_other_account
   	Scenario: Onboarding - TC - 086 - [AR] Change email : As an user, I want to inform an email already in use
@@ -187,7 +209,6 @@ Feature: Onboarding
     	And fill in the documentation field with the document number "33850984" 
     	And click on button ingressar
     	When loading a page I inform the "192837"
-    	Then check if the login to the application was performed, observing the following "Saldo actual"
 		And I click on settings menu in my name
 		And I click on my email
 		And on Email Actual I inform 'tsttst@gmail.com'
@@ -202,7 +223,6 @@ Feature: Onboarding
     	And fill in the documentation field with the document number "33850984" 
     	And click on button ingressar
     	When loading a page I inform the "192837"
-    	Then check if the login to the application was performed, observing the following "Saldo actual"
 		Then I see the text 'SC'
 		
 	@validation_my_initials_and_name_in_menu_screen
@@ -211,7 +231,15 @@ Feature: Onboarding
     	And fill in the documentation field with the document number "33850984" 
     	And click on button ingressar
     	When loading a page I inform the "192837"
-    	Then check if the login to the application was performed, observing the following "Saldo actual"
+    	And I click on settings menu in my name
+		Then I see my name 'Silva Cristiano' and my initials 'SC' in menu screen
+		
+		@validation_my_initials_and_name_in_menu_screen
+  	Scenario: Onboarding - TC - 089 - [AR][CO][PE] Name initials reversed in profile - As a user, I want to see my name in menu
+    	And select if the option "I ready have an account"
+    	And fill in the documentation field with the document number "33850984" 
+    	And click on button ingressar
+    	When loading a page I inform the "192837"
     	And I click on settings menu in my name
 		Then I see my name 'Silva Cristiano' and my initials 'SC' in menu screen
 		
@@ -230,6 +258,44 @@ Feature: Onboarding
 		And on Birth date I inform '14031996' in registro
 		And I click on Continuar
 		Given I see the text 'TÉRMINOS Y CONDICIONES DE USO SUPERDIGITAL ARGENTINA S.A.U®'
+		
+		@message_invalid_phone_number
+  	Scenario: Onboarding - TC - 092 - [AR] Validate message invalid phone number ARG
+		Given I provide a valid DNI
+ 		And I click on Crear cuenta
+		And on Name I inform 'Jhon' in registro
+		And on Surname I inform 'Test' in registro
+		And on Email I inform 'teste@gmail.com' in registro
+		And on Birth date I inform '14031996' in registro
+		And I click on Continuar
+		When I check the first checkbox in Terms and Conditions
+		And I click on Continuar
+		And I see a dropdown listing the available countries
+		And on Phone number I inform '0000000000' in registro
+		And I select the options Mensaje SMS
+		And I click on Continuar
+		Then I see the text '¡Ups! Ese número no es válido. ¿Podrías intentarlo de nuevo?'
+		
+		@Validate_not_accept_ARG_terms
+  	Scenario: Onboarding - TC - 094 - [AR] Validate not accept ARG terms
+		Given I provide a valid DNI
+ 		And I click on Crear cuenta
+		And on Name I inform 'Jhon' in registro
+		And on Surname I inform 'Test' in registro
+		And on Email I inform 'teste@gmail.com' in registro
+		And on Birth date I inform '14031996' in registro
+		And I click on Continuar
+		Given I see the text 'TÉRMINOS Y CONDICIONES DE USO SUPERDIGITAL ARGENTINA S.A.U®'
+		Then button Continuar is disabled
+		
+		@Try_to_proceed_without_email
+  	Scenario: Onboarding - TC - 095 - [AR] Try to proceed without email
+		Given I provide a valid DNI
+ 		And I click on Crear cuenta
+		And on Name I inform 'Jhon' in registro
+		And on Surname I inform 'Test' in registro
+		And on Birth date I inform '14031996' in registro
+		Then button Continuar is disabled
 		
 		
 

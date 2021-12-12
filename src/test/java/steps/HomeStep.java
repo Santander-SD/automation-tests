@@ -74,4 +74,29 @@ public class HomeStep {
         Utils.validateMessage(string);
     }
 
+    @Then("check if the application checked the date input and is showing the following {string}")
+    public void check_if_the_application_checked_the_date_input_and_is_showing_the_following(String string) {
+        Utils.validateMessage(string);
+    }
+
+    @When("click on the radiobutton Fecha exacta de la operacion")
+    public void click_on_the_radiobutton_fecha_exacta_de_la_operacion() {
+        home.clickSpecificDate();
+    }
+
+    @When("fill the operation date field with {string}")
+    public void fill_the_operation_date_field_with(String string) {
+        home.fillSpecificDate(string);
+    }
+
+    @When("click on the radiobutton Monto exacto")
+    public void click_on_the_radiobutton_monto_exacto() {
+        home.clickSpecificAmount();
+    }
+
+    @When("fill the amount field with {string}")
+    public void fill_the_amount_range_with(String string) {
+        home.fillSpecificAmount(string);
+    }
+
 }

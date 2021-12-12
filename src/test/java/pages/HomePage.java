@@ -26,6 +26,8 @@ public class HomePage {
     private SelenideElement inputInitialAmount = $(By.xpath("//div[6]/div/div/div/input"));
     private SelenideElement inputFinalAmount = $(By.xpath("//div[6]/div/div[2]/div/input"));
     private SelenideElement btnApplyFilter = $(By.xpath("//*/text()[normalize-space(.)='Aplicar filtros']/parent::*"));
+    private SelenideElement radioSpecificDate = $(By.xpath("//input[@class='42-transactions4849']"));
+    private SelenideElement radioSpecificAmount = $(By.xpath("//div[2]/label/span/span/input"));
 
 
     public void hideBalance() {
@@ -105,4 +107,21 @@ public class HomePage {
         assertEquals(attribute, "false");
     }
 
+    public void clickSpecificDate() {
+        radioSpecificDate.click();
+    }
+
+    public void fillSpecificDate(String string) {
+        inputInitialDate.clear();
+        inputInitialDate.sendKeys(string);
+    }
+
+    public void clickSpecificAmount() {
+        radioSpecificAmount.click();
+    }
+
+    public void fillSpecificAmount(String string) {
+        inputInitialAmount.clear();
+        inputInitialAmount.sendKeys(string);
+    }
 }

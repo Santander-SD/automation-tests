@@ -236,8 +236,8 @@ Feature: Cards
       | country     | documentation | password  | menu       |
       | "Argentina" | "95812697"    | "192837"  | "Tarjetas" |
 
-	@tc016_Validate_information_about_vencimiento_de_mi_tarjeta
-  Scenario Outline: Cards - TC - 016 - [WEB] - Validate information about vencimiento de mi tarjeta
+	@tc162_Validate_information_about_vencimiento_de_mi_tarjeta
+  Scenario Outline: Cards - TC - 162 - [WEB] - Validate information about vencimiento de mi tarjeta
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And already received the main/physical card
@@ -249,8 +249,8 @@ Feature: Cards
       | country     | documentation | password  | menu       |
       | "Argentina" | "95812697"    | "192837"  | "Tarjetas" |		
 
-	@tc017_Validate_eye_button_to_view_the_entered_balance_card_for_main_card
-  Scenario Outline: Cards - TC - 017 - [WEB] - Validate eye button to view the entered balance card for main card
+	@tc163_Validate_eye_button_to_view_the_entered_balance_card_for_main_card
+  Scenario Outline: Cards - TC - 163 - [WEB] - Validate eye button to view the entered balance card for main card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my <typeCard> card
@@ -261,8 +261,8 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"   |	
       
-	@tc018_Validate_eye_fom_balance_cards_for_virtual_card
-  Scenario Outline: Cards - TC - 018 - [WEB] - Validate eye button to view the entered balance card for virtual card
+	@tc0164_Validate_eye_fom_balance_cards_for_virtual_card
+  Scenario Outline: Cards - TC - 164 - [WEB] - Validate eye button to view the entered balance card for virtual card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my last <typeCard> card
@@ -273,8 +273,8 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |	
 	
-	@tc019_Validate_buscar_comprobante_for_main_card
-  Scenario Outline: Cards - TC - 019 - [WEB] - Validate 'buscar comprobante' for main card
+	@tc165_Validate_buscar_comprobante_for_main_card
+  Scenario Outline: Cards - TC - 165 - [WEB] - Validate 'buscar comprobante' for main card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Movimientos' for my <typeCard> card
@@ -285,8 +285,8 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"   | 
 	
-	@tc020_Validate_virtual_card_without_operation
-  Scenario Outline: Cards - TC - 020 - [WEB] - Validate virtual card without operation
+	@tc166_Validate_virtual_card_without_operation
+  Scenario Outline: Cards - TC - 166 - [WEB] - Validate virtual card without operation
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Movimientos' for my enabled <typeCard> card
@@ -297,8 +297,8 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" | 
       
-	@tc021_Validate_buscar_comprobante_for_virtual_card
-  Scenario Outline: Cards - TC - 021 - [WEB] - Validate 'buscar comprobante' for virtual card
+	@tc167_Validate_buscar_comprobante_for_virtual_card
+  Scenario Outline: Cards - TC - 167 - [WEB] - Validate 'buscar comprobante' for virtual card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Movimientos' for my last <typeCard> card
@@ -309,8 +309,8 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" | 
             
-	@tc022_Validate_ningun_movimiento_for_main_card
-  Scenario Outline: Cards - TC - 022 - [WEB] - Validate buscar comprobante - ningún movimiento for main card
+	@tc168_Validate_ningun_movimiento_for_main_card
+  Scenario Outline: Cards - TC - 168 - [WEB] - Validate buscar comprobante - ningún movimiento for main card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Movimientos' for my last <typeCard> card
@@ -323,8 +323,8 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"   |
       
-	@tc023_Validate_layout_for_limit_of_virtual_Card
-  Scenario Outline: Cards - TC - 023 - [WEB] - Validate layout for limit of virtual Card
+	@tc169_Validate_layout_for_limit_of_virtual_Card
+  Scenario Outline: Cards - TC - 169 - [WEB] - Validate layout for limit of virtual Card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my first <typeCard> card
@@ -339,8 +339,8 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |
       
-	@tc024_Validate_ningun_movimiento_for_virtual_card
-  Scenario Outline: Cards - TC - 024 - [WEB] - Validate buscar comprobante - ningún movimiento for virtual card
+	@tc170_Validate_ningun_movimiento_for_virtual_card
+  Scenario Outline: Cards - TC - 170 - [WEB] - Validate buscar comprobante - ningún movimiento for virtual card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Movimientos' for my last <typeCard> card
@@ -353,8 +353,8 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |
 
-	@tc025_Validate_boton_de_baja_TimeOut_for_virtual_card
-  Scenario Outline: Cards - TC - 025 - [WEB] - Validate botón de baja timeOut for virtual card
+	@tc171_Validate_boton_de_baja_TimeOut_for_virtual_card
+  Scenario Outline: Cards - TC - 171 - [WEB] - Validate botón de baja timeOut for virtual card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my last <typeCard> card
@@ -369,8 +369,8 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |
 
-	@tc026_Validate_boton_de_baja_timeOut_for_main_card
-  Scenario Outline: Cards - TC - 026 - [WEB] - Validate botón de baja timeOut for main card
+	@tc172_Validate_boton_de_baja_timeOut_for_main_card
+  Scenario Outline: Cards - TC - 172 - [WEB] - Validate botón de baja timeOut for main card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my <typeCard> card
@@ -385,8 +385,8 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"   |
       
-	@tc027_Validate_back_to_the_main_screen_cards
-  Scenario Outline: Cards - TC - 027 - [WEB] - Validate back to the main screen cards from the recargar tarjeta screen
+	@tc173_Validate_back_to_the_main_screen_cards
+  Scenario Outline: Cards - TC - 173 - [WEB] - Validate back to the main screen cards from the recargar tarjeta screen
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my last <typeCard> card
@@ -398,8 +398,8 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |
       
-	@tc028_Validate_back_to_the_main_screen_from_tarjetas_Screen
-  Scenario Outline: Cards - TC - 028 - [WEB] - Validate back to the main screen from tarjetas Screen
+	@tc174_Validate_back_to_the_main_screen_from_tarjetas_Screen
+  Scenario Outline: Cards - TC - 174 - [WEB] - Validate back to the main screen from tarjetas Screen
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 	  When I click on main button back

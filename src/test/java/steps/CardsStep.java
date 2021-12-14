@@ -190,6 +190,28 @@ public class CardsStep {
 		}else {			
 			cards.clickOnMenuTarjetaButton();
 		}
+	}
+	
+	@When("I select {string} for my first {string} card")
+	public void iSelectTheFirstVirtualCard(String buttonOption, String typeCard) {
+		cards.clickOnFirstVirtualCard();
+		
+		if(buttonOption.equals("Movimientos")) {			
+			cards.clickOnMovimientosButton();
+		}else {			
+			cards.clickOnMenuTarjetaButton();
+		}
+	}	
+	
+	@When("I select {string} for my enabled {string} card")
+	public void iSelectTheEnabledVirtualCard(String buttonOption, String typeCard) {
+		cards.selectLastVirtualCard(3);
+		
+		if(buttonOption.equals("Movimientos")) {			
+			cards.clickOnMovimientosButton();
+		}else {			
+			cards.clickOnMenuTarjetaButton();
+		}
 	}	
 	
 	@When("I select {string} for my enable {string} card")
@@ -383,7 +405,7 @@ public class CardsStep {
     
     @Then("the switch button should be updated")
     public void theSwitchButtonShouldBeUpdated() {
-    	sleep(3000);
+    	sleep(4000);
     	assertTrue(cards.checkSwitchCard());
     }
 

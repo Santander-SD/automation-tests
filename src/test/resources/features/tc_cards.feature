@@ -155,7 +155,7 @@ Feature: Cards
 
     Examples:
       | country    | documentation | password  | menu       | typeCard  |
-      | "Colombia" | "74279144"    | "192837"  | "Tarjetas" | "virtual" |
+      | "Colombia" | "87970142"    | "192837"  | "Tarjetas" | "virtual" |
 
 	@tc011_Validate_block_virtual_card
   Scenario Outline: Cards - TC - 011 - [WEB] - happy path - Validate layout for Block Virtual Card
@@ -169,17 +169,17 @@ Feature: Cards
 		And the switch button should be updated
 		
     Examples:
-      | country      | documentation | password  | menu       | typeCard  |
-      | "Argentina"  | "29709517"    | "192837"  | "Tarjetas" | "virtual" |
+      | country     | documentation | password  | menu       | typeCard  |
+      | "Colombia"  | "87970142"    | "192837"  | "Tarjetas" | "virtual" |
 
 	@tc012_Validate_unblock_virtual_card
   Scenario Outline: Cards - TC - 012 - [WEB] - happy path - Validate layout for Unblock Virtual Card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
-		And I select 'Menú tarjeta' for my <typeCard> card
+		And I select 'Menú tarjeta' for my last <typeCard> card
 		When I click on 'Bloqueo Temporal'
 		And I confirm operation on the mobile app
-		Then should display the screen with message: 'Listo! Tu tarjeta está ya está desbloqueada' 
+		Then should display the screen with message: 'Listo! Tu tarjeta está ya está desbloqueada'
 		And the virtual card should be unblocked
 		
     Examples:
@@ -198,7 +198,7 @@ Feature: Cards
 
     Examples:
       | country      | documentation | password  | menu       |
-      | "Argentina"  | "25029218"    | "192837"  | "Tarjetas" |
+      | "Argentina"  | "46665484"    | "192837"  | "Tarjetas" |
 
 	@tc014_Validate_Cancel_Main_Card
   Scenario Outline: Cards - TC - 0014 - [WEB] - happy path - Validate layout for Cancel Main Card
@@ -285,11 +285,11 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"   | 
 	
-	 @tc020_Validate_virtual_card_without_operation
+	@tc020_Validate_virtual_card_without_operation
   Scenario Outline: Cards - TC - 020 - [WEB] - Validate virtual card without operation
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
-		And I select 'Movimientos' for my <typeCard> card
+		And I select 'Movimientos' for my enabled <typeCard> card
 		When I search for 'Compra'
 		Then should display a screen with the message 'Todavía no hiciste ninguna operación con esta tarjeta'
 		
@@ -313,7 +313,7 @@ Feature: Cards
   Scenario Outline: Cards - TC - 022 - [WEB] - Validate buscar comprobante - ningún movimiento for main card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
-		And I select 'Movimientos' for my <typeCard> card
+		And I select 'Movimientos' for my last <typeCard> card
 		When I search for 'asdf'
     Then I see the messages:
     	| ¡Ups! No se encontró ningún movimiento 		  					                            |
@@ -327,7 +327,7 @@ Feature: Cards
   Scenario Outline: Cards - TC - 023 - [WEB] - Validate layout for limit of virtual Card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
-		And I select 'Menú tarjeta' for my <typeCard> card
+		And I select 'Menú tarjeta' for my first <typeCard> card
 		And I click on plus button
 		When I click on 'Pedir tarjeta virtual'
 		And I insert virtual card name
@@ -389,7 +389,7 @@ Feature: Cards
   Scenario Outline: Cards - TC - 027 - [WEB] - Validate back to the main screen cards from the recargar tarjeta screen
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
-		And I select 'Menú tarjeta' for my <typeCard> card
+		And I select 'Menú tarjeta' for my last <typeCard> card
 		When I click on 'Recargar tarjeta'
 	  And I click on button back
     Then should back to the main screen cards

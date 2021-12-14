@@ -42,7 +42,7 @@ public class CardsPage {
 	private SelenideElement buttonEyeClosed = $("svg[data-testid='icon-eye-closed']");
 	private SelenideElement buttonArrowBack = $(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Botón de baja'])[1]/following::*[name()='svg'][1]"));
 	private SelenideElement buttonArrowBackMainScreen = $(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Extraer'])[1]/following::*[name()='svg'][1]"));
-	private SelenideElement muiSwitchCard = $(By.xpath("//button[2]/div[2]/span"));
+	private SelenideElement muiSwitchCard = $(By.xpath("//button[2]/div[2]/span/span"));
 	private SelenideElement mainCard = $(By.xpath("//*/text()[normalize-space(.)='Titular']/parent::*"));
 	private SelenideElement virtualCard = $(By.xpath("//*/text()[normalize-space(.)='Virtual']/parent::* | (.//*[normalize-space(text()) and normalize-space(.)='Saldo tarjeta'])[2]/following::div[4]"));
 	private SelenideElement justLabelVirtualCard = $(By.xpath("//*/text()[normalize-space(.)='Virtual']/parent::*"));
@@ -148,6 +148,10 @@ public class CardsPage {
     public void selectLastVirtualCard(int cardPosition) {
 		genericElement = $(By.xpath("//div[@id='mainContentDiv']/div/div/div/div/div/div/div/div/div/div/div[2]/div/div/div/div[3]/button["+Integer.toString(cardPosition)+"]/div"));
 		genericElement.shouldBe(visible).click();
+    }
+    
+    public void clickOnFirstVirtualCard() {
+    	virtualCard.shouldBe(visible).click();
     }
         
     public void checkForAnEnableVirtualCard() {

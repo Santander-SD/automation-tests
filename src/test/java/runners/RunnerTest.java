@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
         },
         features = "classpath:features",
         glue = {"steps"},
-        tags = "@tc028_Validate_back_to_the_main_screen_from_tarjetas_Screen",
+        tags = "@tc007_Validate_view_from_virtual_card_details",
         snippets = SnippetType.CAMELCASE,
         monochrome = true,
         publish = true,

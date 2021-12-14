@@ -60,7 +60,7 @@ Feature: Cards
   Scenario Outline: Cards - TC - 004 - [WEB] - happy path - Validate layout for Cancel Virtual Card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
-		And I select 'Menú tarjeta' for my <typeCard> card
+		And I select 'Menú tarjeta' for my last <typeCard> card
 		When I click on 'Botón de baja'
 		And accept the terms
 		And I confirm operation on the mobile app
@@ -99,7 +99,7 @@ Feature: Cards
   Scenario Outline: Cards - TC - 007 - [WEB] - happy path - Validate view from virtual card details
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
-		And I select 'Menú tarjeta' for my <typeCard> card
+		And I select 'Menú tarjeta' for my last <typeCard> card
 		When I click on "Ver datos de la tarjeta"
 		And I confirm operation on the mobile app
 		Then I should see all virtual card details

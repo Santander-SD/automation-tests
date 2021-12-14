@@ -4,6 +4,11 @@ import static com.codeborne.selenide.Condition.text;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.screenshot;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import io.cucumber.java.Scenario;
@@ -11,6 +16,7 @@ import java.io.*;
 import com.codeborne.selenide.Conditional;
 import com.codeborne.selenide.Selenide;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import io.qameta.allure.Allure;
@@ -21,11 +27,14 @@ import java.awt.Robot;
 public class Utils {
 	
 	private static Robot robot;
-
+	private static String pathFeatureJson= "src/test/resources/dataTest/cards.json";
+	public static String scenarioName;
+	
 	public static void capturarScreenshot(Scenario scenario) {
 		try {
 			byte[] tempShot = screenshot(OutputType.BYTES);
 			scenario.attach(tempShot, "image/png", scenario.getName());
+			scenarioName = scenario.getName();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -105,7 +114,6 @@ public class Utils {
 	
 	public static void setAllureDetailsAboutTest(String message) {
 		Allure.addAttachment("", message);
-		Allure.description(message);
 	}	
 	
 	public static String generateRadomName() {
@@ -121,4 +129,47 @@ public class Utils {
 		int j = r.nextInt(numberList.size());
 		return a[i]+j;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public static JSONObject getJsonDataTest(String key) {
+
+		JSONObject jsonValue = null;
+		JSONParser parser = new JSONParser();
+
+		try {
+			Object obj = parser.parse(new FileReader(pathFeatureJson));
+			JSONObject jsonObject = (JSONObject) obj;
+			JSONArray scenarioList = (JSONArray) jsonObject.get(key);
+
+			Iterator<JSONObject> scenarioListIterator = scenarioList.iterator();
+
+			while (scenarioListIterator.hasNext()) {
+				jsonValue = scenarioListIterator.next();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return jsonValue;
+	}	
+	
+	public static String getJsonValueTest(String scenarioId, String inputJson) {
+		JSONObject j = (JSONObject) getJsonDataTest(scenarioId);
+		return  j.get(inputJson).toString();
+	}
+	
+	public static ArrayList<String> getValueListJson(String list) {
+		String[] listArrayJson;
+		ArrayList<String> jsonList = new ArrayList<>();
+		
+		listArrayJson = list.replace("[", "").replace("]", "").replace("\"","").split(",");
+		
+		for (String values : listArrayJson) {
+			jsonList.add(values);
+		}
+		
+		return jsonList;
+	}	
+		
 }

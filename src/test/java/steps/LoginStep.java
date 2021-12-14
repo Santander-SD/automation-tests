@@ -91,7 +91,7 @@ public class LoginStep {
     public void iAccessMyBrowserProfileUntilTheNicknameIsCreatedIEnterTheAndClickOnTheCreateButton(String nickName) {
         custom.createNickName(nickName);
     }
-
+    
     @When("a message to validate the creation is sent to the cell phone {string}")
     public void aMessageToValidateTheCreationIsSentToTheCellPhone(String messageMobile) {
         assertEquals(custom.getStatusConfirmationCreationNickName(), messageMobile);

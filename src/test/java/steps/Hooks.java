@@ -2,6 +2,7 @@ package steps;
 
 import static utils.Utils.*;
 
+
 import java.util.ArrayList;
 import com.codeborne.selenide.Selenide;
 import commons.BaseTests;
@@ -11,6 +12,8 @@ import io.cucumber.java.Scenario;
 
 public class Hooks {
 	BaseTests baseTests = new BaseTests();
+	
+	public Scenario scenarioName;
 
 	@Before
 	public void setUp() {
@@ -20,6 +23,7 @@ public class Hooks {
 	@After
 	public void tearDown(Scenario scenario) throws Exception {
 		capturarScreenshot(scenario);
+		scenarioName = scenario;
 
 		//Setup Application Information
 		ArrayList<String> informationApp = new ArrayList<String>();

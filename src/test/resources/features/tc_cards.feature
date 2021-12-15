@@ -283,7 +283,7 @@ Feature: Cards
 		
     Examples:
       | country     | documentation | password  | menu       | typeCard |
-      | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"   | 
+      | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"   |
 	
 	@tc166_Validate_virtual_card_without_operation
   Scenario Outline: Cards - TC - 166 - [WEB] - Validate virtual card without operation

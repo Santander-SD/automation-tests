@@ -2,11 +2,15 @@ package steps;
 
 import static com.codeborne.selenide.Selenide.sleep;
 import static org.junit.Assert.assertTrue;
-import static utils.Utils.generatePendingTest;
+import static utils.Utils.getJsonValueTest;
+import static utils.Utils.getValueListJson;
+import static utils.Utils.setAllureDetailsAboutTest;
+import static utils.Utils.validateMessage;
 
 import java.awt.AWTException;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -17,38 +21,37 @@ public class CardsStep {
 	
 	CardsPage cards = new CardsPage();
 	LoginStep loginStep = new LoginStep();
+	
 
 
 	@When("I click on button <Seguir la Entrega>")
-	public void iClickOnButtonSeguirLaEntrega() {
-	    
+	public void iClickOnButtonSeguirLaEntrega() throws Exception {
+
 	}
 	
 	@Given("the physical card has tracking on it")
-	public void thePhysicalCardHasTrackingOnIt() {
-		System.out.println("It depends of test mass");
+	public void thePhysicalCardHasTrackingOnIt() throws Exception {
+
 	}
 	
 	@Then("I have to be informed of delivery states of the physical card in any moment")
-	public void iHaveToBeInformedOfDeliveryStatesOfThePhysicalCardInAnyMoment() throws Exception {
-		generatePendingTest("It depends of test mass");
-	}
-
-	@Given("I'm logged in with a valid account")
-	public void iMLoggedInWithAValidAccount() throws IOException {
-		loginStep.selectTheCountry(""); 
-		loginStep.selectIfTheOption("");
-		loginStep.fillInTheDocumentationFieldWithTheDocumentNumber("");
-		loginStep.clickOnButtonIngressar();
-		loginStep.loadingAPageIInformThe("");
-		loginStep.clickOnButtonIngressar();
-		loginStep.checkIfTheLoginToTheApplicationWasPerformedObservingTheFollowing("");
+	public void iHaveToBeInformedOfDeliveryStatesOfThePhysicalCardInAnyMoment(String message) throws Exception {
+		validateMessage(message);
 	}
 	
+	@Then("I have to be informed of delivery states of the physical card in any moment with the labels:")
+	public void iHaveToBeInformedOfDeliveryStatesOfThePhysicalCardInAnyMomentWithTheLabels(List<String> labels) {
+		cards.validateMessages(labels);
+	}	
+	
+	@Then("I see the messages:")
+	public void iSeeTheMessages(List<String> labels) {
+		cards.validateMessages(labels);
+	}		
+
 	String globalCountry;
 	@Given("I'm logged in with the data {string},{string} and {string}")
 	public void iMLoggedInWithTheDataArgentinaAnd(String country, String documentation, String password)throws IOException {
-		String message = "Saldo actual";
 		String loginOption = "I ready have an account";
 		
 		globalCountry =country;
@@ -58,7 +61,6 @@ public class CardsStep {
 		loginStep.fillInTheDocumentationFieldWithTheDocumentNumber(documentation);
 		loginStep.clickOnButtonIngressar();
 		loginStep.loadingAPageIInformThe(password);
-		loginStep.checkIfTheLoginToTheApplicationWasPerformedObservingTheFollowing(message);
 	}
 	
 	@When("I inform the reason {string} for replace card")
@@ -69,7 +71,21 @@ public class CardsStep {
 	@When("I inform the delivery address")
 	public void informTheDeliveryAddress() {
 		cards.pressContinuarButton();
-		utils.Utils.setAllureDetailsAboutTest("Needs mass");
+	}
+
+	@When("I search for {string}")
+	public void iSearchFor(String data) {
+		cards.inputDataBuscarComprobante(data);
+	}
+	
+	@Then("should display all the information about the search")
+	public void shouldDisplayAllTheInformationAboutTheSearch() {
+		cards.validateMessages(getValueListJson(getJsonValueTest("ce019","validateList")));
+	}
+	
+	@Then("should display all the information about the virtual card transactions")
+	public void shouldDisplayAllTheInformationAboutTheVirtualCardTransactions() {
+		cards.validateMessages(getValueListJson(getJsonValueTest("ce021","validateList")));
 	}
 
 	@Given("I'm on the {string} page")
@@ -79,17 +95,32 @@ public class CardsStep {
 	
 	@Given("the account have a physical card")
 	public void theAccountHaveAPhysicalCard() {
-		utils.Utils.setAllureDetailsAboutTest("This test works only in mobile app !!!");
+		setAllureDetailsAboutTest("This test works only in mobile app !!!");
 	}
 	
 	@When("inform my {int}-digits password")
 	public void informMyDigitsPassword(Integer int1) {
-		utils.Utils.setAllureDetailsAboutTest("This test works only in mobile app !!!");
+		setAllureDetailsAboutTest("This test works only in mobile app !!!");
 	}
+	
+    @When("I click on eye opened button for the main card")
+    public void iClickOnEyeOpenedButton() {
+    	cards.clickOnEyeOpenedMainCard();
+    }
+
+    @When("I click on eye opened button for the virtual card")
+    public void iClickOnEyeOpenedButtonVirtualCard() {
+    	cards.clickOnEyeOpenedVirtualCard();
+    }
+    
+    @Then("should display the card Balance")
+    public void shouldDisplayTheCardBalance() {
+    	cards.validateEyeClosed();
+    }	
 	
 	@Then("I should see my {int}-digits password in the screen")
 	public void iShouldSeeMyDigitsPasswordInTheScreen(Integer int1) throws Exception {
-		generatePendingTest("This test works only in mobile app !!!");
+
 	}
 	
 	@When("accept the terms")
@@ -97,14 +128,22 @@ public class CardsStep {
 	    cards.pressEntendidoButton();
 	    cards.pressSiDarBajaButton();
 	}
+	
+	@When("accept the terms for the main card")
+	public void acceptTheTermsForTheMainCard() {
+	    cards.pressSiDarBajaButton();
+	}	
+	
+	@When("I don't validate the operation on the app")
+	public void iDonTValidateTheOperationOnTheApp() {
+		sleep(125000);
+	}	
 
 	@When("I select {string} for my {string} card")
 	public void iSelectFormMyMainCard(String buttonOption, String typeCard) {
 		if(typeCard.equals("main")) {
 			cards.clickOnMainCard();
-		}else {
-			System.out.println("COUNTRY:"+ globalCountry);
-			
+		}else {			
 			if(globalCountry.equals("Argentina")) {
 				cards.checkVirtualCardBlocked();				
 			}else {
@@ -119,20 +158,81 @@ public class CardsStep {
 		}
 	}
 	
+	@When("I click on button back")
+	public void iClickOnButtonBack() {
+		cards.clickOnButtonArrowBack();
+	}
+	
+	@When("I click on main button back")
+	public void iClickOnMainButtonBack() {
+		cards.clickOnButtonArrowBackMainScreen();
+	}
+	
+	@Then("should back to the main screen cards")
+	public void shouldBackToTheMainScreenCards() {
+		cards.validateBackToMainCards();
+	}
+	
+	@Then("should back to the main screen")
+	public void shouldBackToTheMainScreen() {
+		cards.validateMessages(getValueListJson(getJsonValueTest("ce028","labels")));
+	}
+	
+	@When("I select {string} for my last {string} card")
+	public void iSelectTheLastVirtualCard(String buttonOption, String typeCard) {
+		cards.selectLastVirtualCard(6);
+		
+		if(buttonOption.equals("Movimientos")) {			
+			cards.clickOnMovimientosButton();
+		}else {			
+			cards.clickOnMenuTarjetaButton();
+		}
+	}
+	
+	@When("I select {string} for my first {string} card")
+	public void iSelectTheFirstVirtualCard(String buttonOption, String typeCard) {
+		cards.clickOnFirstVirtualCard();
+		
+		if(buttonOption.equals("Movimientos")) {			
+			cards.clickOnMovimientosButton();
+		}else {			
+			cards.clickOnMenuTarjetaButton();
+		}
+	}	
+	
+	@When("I select {string} for my enabled {string} card")
+	public void iSelectTheEnabledVirtualCard(String buttonOption, String typeCard) {
+		cards.selectLastVirtualCard(3);
+		
+		if(buttonOption.equals("Movimientos")) {			
+			cards.clickOnMovimientosButton();
+		}else {			
+			cards.clickOnMenuTarjetaButton();
+		}
+	}	
+	
+	@When("I select {string} for my enable {string} card")
+	public void iSelectFormMyEnableMainCard(String buttonOption, String typeCard) {
+		if(typeCard.equals("main")) {
+			cards.clickOnMainCard();
+		}else {			
+			if(globalCountry.equals("Argentina")) {
+				cards.checkForAnEnableVirtualCard();				
+			}else {
+				cards.clickOnGenericVirtualCard();
+			}
+		}
+		
+		if(buttonOption.equals("Movimientos")) {			
+			cards.clickOnMovimientosButton();
+		}else {			
+			cards.clickOnMenuTarjetaButton();
+		}
+	}	
+	
 	@Then("should be displayed all purchasing transactions from my main card")
 	public void shouldBeDisplayedAllPurchasingTransactionsFromMyMainCard() {
-		ArrayList<String> transactionsList = new ArrayList<String>();
-		transactionsList.add("Compra");
-		transactionsList.add("South Emporium Argentina ARG");
-		transactionsList.add("261,61");
-		transactionsList.add("Compra");
-		transactionsList.add("Midhwest Emporium Argentina ARG");
-    	transactionsList.add("99,99");
-    	transactionsList.add("Compra");
-    	transactionsList.add("Northwest Emporium Argentina ARG");
-    	transactionsList.add("155,13");
-    	
-		cards.purchasingTransactionsvalidation(transactionsList);	    
+		cards.validateMessages(getValueListJson(getJsonValueTest("ce005","labels")));
 	}
 
 	@When("I click on {string}")
@@ -142,24 +242,34 @@ public class CardsStep {
 	}
 
 	@When("I confirm operation on the mobile app")
-	public void iConfirmOperationOnTheMobileApp() {
-		System.out.println("It depends of mobile app operation");
-		utils.Utils.setAllureDetailsAboutTest("It depends of mobile app operation");
+	public void iConfirmOperationOnTheMobileApp() throws Exception {
+		sleep(1000);
+		validateMessage("Validar la operación en tu celular");
 	}
 	
 	@When("I see the message {string}")
 	public void iSeeThe(String message) {
-		cards.checkTextPresent(message);
+		validateMessage(message);
 	}
 	
 	@Then("I should see all virtual card details")
 	public void iShouldSeeAllVirtualCardDetails() throws Exception {
-		generatePendingTest("It depends of mobile app operation");
+
+	}
+
+	@When("I click on information icon")
+	public void iClickOnInformationIcon() {
+		cards.clickOnInformationIcont();
+	}
+	
+	@Then("should display informations about the vencimiento de la tarjeta")
+	public void shouldDisplayInformationsAboutTheVencimientoDeLaTarjeta() {
+		cards.validateMessages(getValueListJson(getJsonValueTest("ce016","validateList")));
 	}
 
 	@Given("I already have money on my virtual card")
 	public void iAlreadyHaveMoneyOnMyVirtualCard() {
-		assertTrue(cards.checkBalanceCard("Virtual"));  
+		assertTrue(cards.checkBalanceCard(6));  
 	}
 	
 	@When("I insert a withdraw value {string}")
@@ -170,18 +280,17 @@ public class CardsStep {
 	
 	@Then("a voucher with message {string} should be displayed")
 	public void aVoucherWithMessageShouldBeDisplayed(String string) throws Exception {
-		utils.Utils.setAllureDetailsAboutTest("It depends of mobile app operation");
-		generatePendingTest("It depends of mobile app operation");
+		setAllureDetailsAboutTest("It depends of mobile app operation");
 	}
 	
 	@Then("Card balance should be updated")
 	public void cardBalanceShouldBeUpdated() {
-		System.out.println("It depends of mobile app operation");
+
 	}
 	
 	@Then("withdraw voucher should exists on <Movimientos>")
 	public void withdrawVoucherShouldExistsOnMovimientos() throws Exception {
-		generatePendingTest("It depends of mobile app operation");
+
 	}
 	
 	@When("I insert a recharge value {string}")
@@ -201,7 +310,7 @@ public class CardsStep {
 	
 	@When("I inform the reason for cancel card")
 	public void iInformTheReasonForCancelCard() {
-		utils.Utils.setAllureDetailsAboutTest("This step isen't inside the happy flow");
+		setAllureDetailsAboutTest("This step isen't inside the happy flow");
 	}
 	
 	@Then("the main card should be cancelled")
@@ -211,56 +320,44 @@ public class CardsStep {
 	
 	@Then("the cancelled main card on [Tarjetas] page should display message {string}")
 	public void theCancelledMainCardOnTarjetasPageShouldDisplayMessage(String string) throws Exception {
-		generatePendingTest("It depends of mobile app operation");
+
 	}
 		
-
-
-
-	@Then("the main card should be blocked")
-	public void theMainCardShouldBeBlocked() {
+	@Then("the virtual card should be blocked")
+	public void theVirtualCardShouldBeBlocked() {
 
 	}
 	
 	@Then("should display a screen with the message {string}")
 	public void shouldDisplayAScreenWithTheMessage(String message) {
-		cards.checkTextPresent(message);
+		validateMessage(message);
 	}
 
 	@Then("should be displayed all purchasing transactions from my virtual card")
-	public void shouldBeDisplayedAllPurchasingTransactionsFromMyVirtualCard() {
-		ArrayList<String> transactionsList = new ArrayList<String>();
-		transactionsList.add("Compra");
-		transactionsList.add("MERCADOPAGO *Spotify Buenos Aires ARG");
-		transactionsList.add("244,99");
-		transactionsList.add("Compra");
-		transactionsList.add("MERCADOPAGO *iFood Buenos Aires ARG");
-    	transactionsList.add("77,97");
-    	transactionsList.add("Compra");
-    	transactionsList.add("MERCADOPAGO *Uber Buenos Aires ARG");
-    	transactionsList.add("119,91");
-    	
-		cards.purchasingTransactionsvalidation(transactionsList);	 
+	public void shouldBeDisplayedAllPurchasingTransactionsFromMyVirtualCard() {		
+		cards.validateMessages(getValueListJson(getJsonValueTest("ce006","labels")));
 	}
 	
 	@When("I confirm data to request a new card")
 	public void iConfirmDataToRequestANewCard() {
-
+		cards.selectOption("De acuerdo");
+		cards.selectOption("Continuar");
+		cards.selectOption("Confirmar");
 	}
 	
 	@Then("the request should be successful displaying the voucher on the screen")
 	public void theRequestShouldBeSuccessfulDisplayingTheVoucherOnTheScreen() {
-		utils.Utils.setAllureDetailsAboutTest("It depends of mobile app operation");
+
 	}
 	
 	@Then("a new card should be displayed on caroussel with tracking button name {string}")
 	public void aNewCardShouldBeDisplayedOnCarousselWithTrackingButtonName(String string) throws Exception {
-		generatePendingTest("It depends of mobile app operation");
+		setAllureDetailsAboutTest("It depends of mobile app operation");
 	}
 	
 	@Then("I should see the message {string}")
 	public void iShouldSeeTheMessage(String string) throws Exception {
-		generatePendingTest("It depends of mobile app operation");
+		
 	}
 	
 	@Then("the virtual card should be cancelled")
@@ -305,13 +402,14 @@ public class CardsStep {
     
     @Then("the switch button should be updated")
     public void theSwitchButtonShouldBeUpdated() {
+    	sleep(4000);
     	assertTrue(cards.checkSwitchCard());
     }
 
     
     @Then("should display the screen with message: {string}")
     public void shouldDisplayTheScreenWithMessage(String string) throws Exception {
-    	generatePendingTest("It depends of mobile app operation");
+
     }
     
     @Then("the virtual card should be unblocked")
@@ -323,4 +421,24 @@ public class CardsStep {
     public void iAcceptTheTerms() {
     	cards.pressSiDarBajaButton();
     }
+    
+    @Given("already received the main\\/physical card")
+    public void alreadyReceivedTheMainPhysicalCard() {
+
+    }
+    
+    @When("I inform the expiration date")
+    public void iInformTheExpirationDate() { 
+    	cards.setDateInputVencimiento(getJsonValueTest("ce015","date"));
+    }
+    
+    @Then("main card should be activated")
+    public void mainCardShouldBeActivated() {
+    	setAllureDetailsAboutTest("This test needs manual validation, because of mobile flow.");
+    }
+    
+    @Then("should display a success screen with messages: {string}")
+    public void shouldDisplayASuccessScreenWithMessages(String message) {
+
+    }    
 }

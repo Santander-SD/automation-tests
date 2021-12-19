@@ -123,7 +123,7 @@ Feature: Cards
 		
     Examples:
       | country     | documentation | password  | menu       | typeCard  	| value  |
-      | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual"  |	"0,11" |	
+      | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual"  |	"1,11" |	
 
 	@tc009_Validate_recharge_virtual_card
   Scenario Outline: Cards - TC - 009 - [WEB] - happy path - Validate layout for Recharge Virtual Card
@@ -198,7 +198,7 @@ Feature: Cards
 
     Examples:
       | country      | documentation | password  | menu       |
-      | "Argentina"  | "46665484"    | "192837"  | "Tarjetas" |
+      | "Argentina"  | "05692596"    | "192837"  | "Tarjetas" |
 
 	@tc014_Validate_Cancel_Main_Card
   Scenario Outline: Cards - TC - 0014 - [WEB] - happy path - Validate layout for Cancel Main Card
@@ -408,3 +408,68 @@ Feature: Cards
     Examples:
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |
+      
+ ################# -- TERCEIRA ENTREGA -- #################      
+
+ 	@tc175_Validate_report_international_travel
+  Scenario Outline: Cards - TC - 175 - [WEB] - Validate report international travel for main card
+		And I'm logged in with the data <country>,<documentation> and <password>
+		And I'm on the <menu> page
+		And I select 'Menú tarjeta' for my <typeCard> card
+		When I click on 'Informar viaje internacional'
+		And I click on 'Registrar aviso de viaje'
+		And I selec the country <selectCountry>
+		And I select the departure date "16/12/2021"
+		And I select the arrival date to 1 day +
+		And I click on 'Crear aviso'
+    Then should display a new repot
+		
+    Examples:
+      | country     | documentation | password  | menu       | typeCard | selectCountry |
+      | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"   | "Argentina"   |
+      
+ 	@tc176_Validate_invalid_date_Format_for_report_international_travel
+  Scenario Outline: Cards - TC - 176 - [WEB] - Validate invalid date Format for report international travel
+		And I'm logged in with the data <country>,<documentation> and <password>
+		And I'm on the <menu> page
+		And I select 'Menú tarjeta' for my <typeCard> card
+		And I click on 'Informar viaje internacional'
+		And I click on 'Registrar aviso de viaje'
+		And I selec the country <selectCountry>
+		When I select the departure date "11/51/1111"
+    Then should display a screen with the message 'Invalid Date Format'
+		
+    Examples:
+      | country     | documentation | password  | menu       | typeCard | selectCountry |
+      | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"   | "Argentina"   |
+      
+ 	@tc177_Validate_return_date_earlier_than_the_departure_date
+  Scenario Outline: Cards - TC - 177 - [WEB] - Validate return date earlier than the departure date
+		And I'm logged in with the data <country>,<documentation> and <password>
+		And I'm on the <menu> page
+		And I select 'Menú tarjeta' for my <typeCard> card
+		And I click on 'Informar viaje internacional'
+		And I click on 'Registrar aviso de viaje'
+		And I selec the country <selectCountry>
+		When I select the departure date to 1 day +
+    Then should display a screen with the message 'La fecha de regreso no puede ser anterior a la fecha de salida'
+		
+    Examples:
+      | country     | documentation | password  | menu       | typeCard | selectCountry |
+      | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"   | "Argentina"   |
+
+	@tc178_Validate_timeOut_activate_card_for_main_card
+  Scenario Outline: Cards - TC - 178 - [WEB] - Validate timeOut activate card for main card
+		And I'm logged in with the data <country>,<documentation> and <password>
+		And I'm on the <menu> page
+		And I click on 'Activar tarjeta'
+		When I fill in the Vencimiento field
+		And I click on 'Continuar'		
+		And I don't validate the operation on the app
+    Then I see the messages:
+    	| El tiempo para realizar la operación ha terminado. Puedes volver a realizar la validación  |
+    	| La solicitación no fue realiza                                                             |
+		
+    Examples:
+      | country     | documentation | password  | menu       |
+      | "Argentina" | "46665484"    | "192837"  | "Tarjetas" |

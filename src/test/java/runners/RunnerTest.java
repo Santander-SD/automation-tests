@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
         },
         features = "classpath:features",
         glue = {"steps"},
-        tags = "@cards",
+        //tags = "",
         snippets = SnippetType.CAMELCASE,
         monochrome = true,
         publish = true,

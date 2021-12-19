@@ -22,6 +22,7 @@ import java.util.Random;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 
@@ -178,5 +179,43 @@ public class Utils {
 		}
 		
 		return jsonList;
-	}		
+	}	
+	
+    public static Keys numpadKeys(String value) {
+    	Keys key = null;
+    	
+    	switch (value) {
+    	  case "0":
+    	    key = Keys.NUMPAD0;
+    	    break;
+    	  case "1":
+    		  key = Keys.NUMPAD1;
+    	    break;
+    	  case "2":
+    		  key = Keys.NUMPAD2;
+    	    break;
+    	  case "3":
+    		  key = Keys.NUMPAD3;
+    	    break;
+    	  case "4":
+    		  key = Keys.NUMPAD4;
+    	    break;
+    	  case "5":
+    		  key = Keys.NUMPAD5;
+    	    break;
+    	  case "6":
+    		  key = Keys.NUMPAD6;
+    		  break;
+    	  case "7":
+    		  key = Keys.NUMPAD7;
+    		  break;
+    	  case "8":
+    		  key = Keys.NUMPAD8;
+    		  break;
+    	  case "9":
+    		  key = Keys.NUMPAD9;
+    		  break;
+    	}
+		return key;
+    }	
 }

@@ -9,6 +9,7 @@ import static utils.Utils.validateMessage;
 
 import java.awt.AWTException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 import io.cucumber.java.en.Given;
@@ -21,6 +22,7 @@ public class CardsStep {
 	
 	CardsPage cards = new CardsPage();
 	LoginStep loginStep = new LoginStep();
+	public String globaSelectCountry;
 	
 
 
@@ -138,6 +140,12 @@ public class CardsStep {
 	public void iDonTValidateTheOperationOnTheApp() {
 		sleep(125000);
 	}	
+	
+	@When("I fill in the Vencimiento field")
+	public void iFillInTheVencimientoFieldWithTheData() {
+		cards.setDateInputVencimiento(getJsonValueTest("ce015","date"));
+	}
+	
 
 	@When("I select {string} for my {string} card")
 	public void iSelectFormMyMainCard(String buttonOption, String typeCard) {
@@ -238,9 +246,45 @@ public class CardsStep {
 	@When("I click on {string}")
 	public void iClickOn(String option) {
 	    cards.selectOption(option);
-	    sleep(3000);
+	    sleep(2000);
 	}
-
+	
+	@Then("should display a new repot")
+	public void shouldDisplayANewRepot() throws ParseException {
+		cards.validateNewreport(this.globaSelectCountry);
+	}	
+	
+	
+	@When("I selec the country {string}")
+	public void iSelecTheCountry(String country) {
+		this.globaSelectCountry = country;
+		cards.selectCountry(country);
+		sleep(1000);
+	}
+	
+	@When("I select the departure date {string}")
+	public void iSelectTheDepartureDate(String date) {
+		cards.selectDateDeparture(date);
+		sleep(2000);
+	}
+	@When("I select the arrival date {string}")
+	public void iSelectTheArrivalDate(String date) {
+		cards.selectDateArrival();
+		sleep(10000);
+	}
+	
+	@When("I select the arrival date to {int} day +")
+	public void iSelectTheArrivalDateToDay(Integer int1) {
+		cards.selectDateArrival();
+		sleep(10000);
+	}
+	
+	@When("I select the departure date to {int} day +")
+	public void iSelectTheDepartureDateToDay(Integer int1) {
+		cards.selectDateDeparturePlus();
+		sleep(10000);
+	}
+	
 	@When("I confirm operation on the mobile app")
 	public void iConfirmOperationOnTheMobileApp() throws Exception {
 		sleep(1000);

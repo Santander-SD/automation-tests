@@ -21,6 +21,9 @@ public class RechargePage {
 	private SelenideElement rechargeTransporteTitle = $x("//p[text()='¿Qué tarjeta vas a recargar?']");
 	private ElementsCollection transportItens = $$x("//p[contains(@class,'transport_textBoldTitleItem')]");
 	private SelenideElement buttonRecargarTarjeta = $x("//button[contains(.,'Recargar tarjeta')]");
+	private SelenideElement buttonRegisterCard = $("button[data-testid='button-register-card']");
+	private SelenideElement inputAlias = $x("//label[contains(text(),'Alias')]/../div/input");
+	private SelenideElement inputTarjetaNumber = $x("//label[contains(text(),'Número de tarjeta')]/../div/input");
 
 	public void waitOnPageLoaded() {
 		pageTitle.should(Condition.visible);
@@ -89,4 +92,17 @@ public class RechargePage {
 	public void selectValueTheRecharge(String value) {
 		$(By.xpath("//h6[contains(text(),'"+value+"')]")).click();
 	}
+	
+	public void setAlias(String alias) {
+		inputAlias.sendKeys(alias);
+	}
+	
+	public void pressButtonRegister() {
+		buttonRegisterCard.click();
+	}
+	
+	public void setCardNumber(String cardNumber) {
+		inputTarjetaNumber.sendKeys(cardNumber);
+	}
+	
 }

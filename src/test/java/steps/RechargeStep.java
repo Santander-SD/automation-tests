@@ -1,5 +1,7 @@
 package steps;
 
+import com.codeborne.selenide.Selenide;
+
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -13,7 +15,7 @@ import utils.Utils;
 public class RechargeStep extends RechargePage {
 
 	@Given("^I see page with ¿Qué recarga vas a hacer\\?$")
-	public void iSeePageWithQuéRecargaVasAHacer() throws Throwable {
+	public void iSeePageWithQueRecargaVasAHacer() throws Throwable {
 		waitOnPageLoaded();
 	}
 
@@ -86,6 +88,26 @@ public class RechargeStep extends RechargePage {
 	@And("^I confirm the transaction on Mobile$")
 	public void iConfirmTheTransactionOnMobile() throws Throwable {
 		throw new PendingException();
+	}
+
+	@And("^I wait to exceed the time out for confirmation$")
+	public void iWaitToExceedTheTimeOutForConfirmation() throws Throwable {
+		Selenide.sleep(120000);
+	}
+	
+	@When("click on Registrar nueva tarjeta")
+	public void clickOnRegistrarNuevaTarjeta() {
+	    pressButtonRegister();
+	}
+	
+	@When("I set value on Alias with {string}")
+	public void iSetValueOnAliasWith(String alias) {
+	    setAlias(alias);
+	}
+	
+	@When("I set value onNúmero de tarjea with {string}")
+	public void iSetValueOnNúmeroDeTarjeaWith(String cardNumber) {
+		setCardNumber(cardNumber);
 	}
 
 

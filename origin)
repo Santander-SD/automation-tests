@@ -1,5 +1,0 @@
-Merge made by the 'recursive' strategy.
- src/test/java/pages/OnboardingPage.java                                   |  4 +--
- src/test/resources/features/{onboarding.feature => tc_onboarding.feature} | 74 +++++++++++++++++++--------------------
- 2 files changed, 39 insertions(+), 39 deletions(-)
- rename src/test/resources/features/{onboarding.feature => tc_onboarding.feature} (80%)

@@ -16,11 +16,9 @@ public class OnboardingPage {
     private SelenideElement inputNacimiento = $("input[name='birthDate']");
     private SelenideElement ButtonContinue = $("#footer-button-next");
     private SelenideElement checkTermsAndConditions = $(By.xpath("//*[contains(@label, 'Términos')]"));
-    private SelenideElement secondCheckTermsAndConditions = $(By.xpath("//*[contains(@label, 'Quiero')]"));
     private SelenideElement selectCountryPrefix = $("#phone-prefix-list-select");
     private SelenideElement inputPhoneNumber = $("#phone-number-input");
     private SelenideElement radioMessageSMS = $(By.xpath("//span[contains(text(), 'Mensaje SMS')]/../span[1]"));
-    private SelenideElement radioLlamadaDeCelular = $(By.xpath("//span[contains(text(), 'Llamada de celular')]/../span[1]"));
     private SelenideElement inputVerificationCode = $("input[type='number']");
     private SelenideElement inputUserNaveBar = $("#user-navbar");
     private SelenideElement buttonMiEmail = $(By.xpath("//p[contains(text(), 'Mi email')]"));
@@ -90,10 +88,6 @@ public class OnboardingPage {
     	checkTermsAndConditions.click();
     }
     
-    public void clickSecondCheckTermsAndConditions() {
-    	secondCheckTermsAndConditions.click();
-    }
-    
 	public void validExistSelectPrefix() {
 		selectCountryPrefix.exists();
     }
@@ -105,10 +99,6 @@ public class OnboardingPage {
     
     public void clickRadioMsgSMS() {
     	radioMessageSMS.click();
-    }
-    
-    public void clickRadioLlamadaDeCelular() {
-    	radioLlamadaDeCelular.click();
     }
     
     public void textExist(String text) {
@@ -124,10 +114,6 @@ public class OnboardingPage {
     	Assert.assertFalse(ButtonCrearCuenta.isEnabled());
     }
     
-    public void ButtonContinueDisabled() {
-    	Assert.assertFalse(ButtonContinue.isEnabled());
-    }
-    
     public void clickRadioByText(String text) {
     	$(By.xpath("//*[contains(text(), '"+text+"')]")).click();
     }
@@ -135,11 +121,6 @@ public class OnboardingPage {
     public void clickAnswersNo() {
     	$(By.xpath("//p[contains(text(), 'financiación del terrorismo.')]/../../div[2]/button[2]")).click();
     	$(By.xpath("//p[contains(text(), 'funciones públicas')]/../../div[2]/button[2]")).click();
-    }
-    
-    public void clickAnswersYes() {
-    	$(By.xpath("//p[contains(text(), 'financiación del terrorismo.')]/../../div[2]/button[1]")).click();
-    	$(By.xpath("//p[contains(text(), 'funciones públicas')]/../../div[2]/button[1]")).click();
     }
     
     public void setSixDigitPassword() {
@@ -151,64 +132,11 @@ public class OnboardingPage {
     	$(By.xpath("//span[contains(text(), '3')]/../..")).click();
     }
     
-    public void setTwoDigitPassword() {
-    	$(By.xpath("//span[contains(text(), '0')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '1')]/../..")).click();
-    }
-    
-    public void setSixDigitSequentialPassword() {
-    	$(By.xpath("//span[contains(text(), '0')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '1')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '2')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '3')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '4')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '5')]/../..")).click();
-    }
-    
-    public void setSixDigitEqualsPassword() {
-    	$(By.xpath("//span[contains(text(), '1')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '1')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '1')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '1')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '1')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '1')]/../..")).click();
-    }
-    
-    public void setSixDigitBirthdayPassword() {
-    	$(By.xpath("//span[contains(text(), '1')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '4')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '0')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '3')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '9')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '6')]/../..")).click();
-    }
-    
     public void setFourDigitPassword() {
     	$(By.xpath("//span[contains(text(), '0')]/../..")).click();
     	$(By.xpath("//span[contains(text(), '1')]/../..")).click();
     	$(By.xpath("//span[contains(text(), '0')]/../..")).click();
     	$(By.xpath("//span[contains(text(), '2')]/../..")).click();
-    }
-    
-    public void setFourDigitSequentialPassword() {
-    	$(By.xpath("//span[contains(text(), '0')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '1')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '2')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '3')]/../..")).click();
-    }
-    
-    public void setFourDigitEqualsPassword() {
-    	$(By.xpath("//span[contains(text(), '0')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '0')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '0')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '0')]/../..")).click();
-    }
-    
-    public void setFourDigitBirthdayPassword() {
-    	$(By.xpath("//span[contains(text(), '1')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '4')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '0')]/../..")).click();
-    	$(By.xpath("//span[contains(text(), '3')]/../..")).click();
     }
     
     public void validNameAndInitialName(String name, String initials) {

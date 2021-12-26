@@ -4,7 +4,7 @@
 Feature: Cell Phone Recharge
 
   Background: 
-    Given i'm logged into the application
+    Given I'm logged in with valid data
     When click on Recargar
 
   @pending_mobile @Recharge_flow_of_success
@@ -180,3 +180,168 @@ Feature: Cell Phone Recharge
     Examples: 
       | companyValue | cellPhoneNumber | rechargeValue | message                    |
       | "Claro"      | "541122027878"  | "100"         | "El pago no fue realizado" |
+
+  Scenario Outline: Recargas de Celular - 0013 - [WEB] - 189 - Recargas de Celular	Validate Claro company
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de celular
+    Then I see company <companyValue>
+
+    Examples: 
+      | companyValue |
+      | "Claro"      |
+
+  Scenario Outline: Recargas de Celular - 0014 - [WEB] - 190 - Recargas de Celular	Validate Movistar company
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de celular
+    Then I see company <companyValue>
+
+    Examples: 
+      | companyValue |
+      | "Movistar"   |
+
+  Scenario Outline: Recargas de Celular - 0015 - [WEB] - 191 - Recargas de Celular	Validate Nextel company
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de celular
+    Then I see company <companyValue>
+
+    Examples: 
+      | companyValue |
+      | "Nextel"     |
+
+  Scenario Outline: Recargas de Celular - 0016 - [WEB] - 192 - Recargas de Celular	Validate Telecom Persona company
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de celular
+    Then I see company <companyValue>
+
+    Examples: 
+      | companyValue      |
+      | "Telecom Persona" |
+
+  Scenario Outline: Recargas de Celular - 0017 - [WEB] - 193 - Recargas de Celular	Validate Tuenti Recharge company
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de celular
+    Then I see company <companyValue>
+
+    Examples: 
+      | companyValue |
+      | "Tuenti"     |
+
+  Scenario Outline: Recargas de Celular - 0018 - [WEB] - 194 - Validate Invalid Number Company Claro
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de celular
+    And select company with <companyValue>
+    And I set the Cell number field with <cellPhoneNumber>
+    Then I see the continue button disabled
+
+    Examples: 
+      | companyValue | cellPhoneNumber |
+      | "Claro"      | "541199999999"  |
+
+  Scenario Outline: Recargas de Celular - 0019 - [WEB] - 195 - Validate Invalid Number Company Movistar
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de celular
+    And select company with <companyValue>
+    And I set the Cell number field with <cellPhoneNumber>
+    Then I see the continue button disabled
+
+    Examples: 
+      | companyValue      | cellPhoneNumber |
+      | "Movistar - Reca" | "541199999999"  |
+
+  Scenario Outline: Recargas de Celular - 0020 - [WEB] - 233 - Validate Invalid Number Company Nextel
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de celular
+    And select company with <companyValue>
+    And I set the Cell number field with <cellPhoneNumber>
+    Then I see the continue button disabled
+
+    Examples: 
+      | companyValue | cellPhoneNumber |
+      | "Nextel"     | "541199999999"  |
+
+  Scenario Outline: Recargas de Celular - 0021 - [WEB] - 234 - Validate Invalid Number Company Telecom Persona
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de celular
+    And select company with <companyValue>
+    And I set the Cell number field with <cellPhoneNumber>
+    Then I see the continue button disabled
+
+    Examples: 
+      | companyValue      | cellPhoneNumber |
+      | "Telecom Persona" | "541199999999"  |
+
+  Scenario Outline: Recargas de Celular - 0022 - [WEB] - 235 - Validate Invalid Number Company Tuenti - Recarg
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de celular
+    And select company with <companyValue>
+    And I set the Cell number field with <cellPhoneNumber>
+    Then I see the continue button disabled
+
+    Examples: 
+      | companyValue      | cellPhoneNumber |
+      | "Tuenti - Recarg" | "541199999999"  |
+
+  Scenario Outline: Recargas de Celular - 0023 - [WEB] - 236 - Validate Insufficient account balance for Company Claro
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de celular
+    And select company with <companyValue>
+    And I set the Cell number field with <cellPhoneNumber>
+    And click on button Continuar
+    And set recharge value with <rechargeValue>
+    And I see an alert icone about over balance
+
+    Examples: 
+      | companyValue | cellPhoneNumber | rechargeValue |
+      | "Claro"      | "541122027878"  | "99999999999" |
+
+  Scenario Outline: Recargas de Celular - 0024 - [WEB] - 237 - Validate Insufficient account balance for Company Movistar - Reca
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de celular
+    And select company with <companyValue>
+    And I set the Cell number field with <cellPhoneNumber>
+    And click on button Continuar
+    And set recharge value with <rechargeValue>
+    And I see an alert icone about over balance
+
+    Examples: 
+      | companyValue      | cellPhoneNumber | rechargeValue |
+      | "Movistar - Reca" | "541122027878"  | "99999999999" |
+
+  Scenario Outline: Recargas de Celular - 0025 - [WEB] - 238 - Validate Insufficient account balance for Company Nextel
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de celular
+    And select company with <companyValue>
+    And I set the Cell number field with <cellPhoneNumber>
+    And click on button Continuar
+    And set recharge value with <rechargeValue>
+    And I see an alert icone about over balance
+
+    Examples: 
+      | companyValue | cellPhoneNumber | rechargeValue |
+      | "Nextel"     | "541122027878"  | "99999999999" |
+
+  Scenario Outline: Recargas de Celular - 0026 - [WEB] - 239 - Validate Insufficient account balance for Company Telecom Persona
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de celular
+    And select company with <companyValue>
+    And I set the Cell number field with <cellPhoneNumber>
+    And click on button Continuar
+    And set recharge value with <rechargeValue>
+    And I see an alert icone about over balance
+
+    Examples: 
+      | companyValue      | cellPhoneNumber | rechargeValue |
+      | "Telecom Persona" | "541122027878"  | "99999999999" |
+
+  Scenario Outline: Recargas de Celular - 0027 - [WEB] - 240 - Validate Insufficient account balance for Company Tuenti - Recarg
+    Given I see page with ¿Qué recarga vas a hacer?
+    When click on card Realizar una recarga de celular
+    And select company with <companyValue>
+    And I set the Cell number field with <cellPhoneNumber>
+    And click on button Continuar
+    And set recharge value with <rechargeValue>
+    And I see an alert icone about over balance
+
+    Examples: 
+      | companyValue      | cellPhoneNumber | rechargeValue |
+      | "Tuenti - Recarg" | "541122027878"  | "99999999999" |

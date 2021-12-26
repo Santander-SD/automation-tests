@@ -65,6 +65,11 @@ public class OnboardingStep {
         onboarding.clickCheckTermsAndConditions();
     }
     
+    @When("I check the second checkbox in Terms and Conditions")
+    public void iCheckTheSecondCheckboxInTermsAndConditions() {
+        onboarding.clickSecondCheckTermsAndConditions();
+    }
+    
     @When("I see a dropdown listing the available countries")
     public void iSeeADropdownListingTheAvailableCountries() {
         onboarding.validExistSelectPrefix();
@@ -78,6 +83,11 @@ public class OnboardingStep {
     @When("I select the options Mensaje SMS")
     public void iSelectTheOptionsMensajeSMS() {
        onboarding.clickRadioMsgSMS();
+    }
+    
+    @When("I select the options Llamada de celular")
+    public void iSelectTheOptionsLlamadaDeCelular() {
+       onboarding.clickRadioLlamadaDeCelular();
     }
     
     @Then("I see the text {string}")
@@ -100,14 +110,54 @@ public class OnboardingStep {
        onboarding.clickAnswersNo();
     }
     
+    @When("I click Yes on answer of categories")
+    public void iClickYesOnAnswerOfCategories() {
+       onboarding.clickAnswersYes();
+    }
+    
     @When("I create the six digit password")
     public void iCreateTheSixDigitPassword() {
        onboarding.setSixDigitPassword();
     }
     
+    @When("I create the two digit password")
+    public void iCreateTheTwoDigitPassword() {
+       onboarding.setTwoDigitPassword();
+    }
+    
     @When("I create the four digit password")
     public void iCreateTheFourDigitPassword() {
        onboarding.setFourDigitPassword();
+    }
+    
+    @When("I create the six digit password with sequential numbers")
+    public void iCreateTheSixDigitPasswordWithSequentialNumbers() {
+       onboarding.setSixDigitSequentialPassword();
+    }
+    
+    @When("I create the six digit password with same numbers")
+    public void iCreateTheSixDigitPasswordWithSameNumbers() {
+       onboarding.setSixDigitEqualsPassword();
+    }
+    
+    @When("I create the six digit password with birthday numbers")
+    public void iCreateTheSixDigitPasswordWithBirthdayNumbers() {
+       onboarding.setSixDigitBirthdayPassword();
+    }
+    
+    @When("I create the four digit password with sequential numbers")
+    public void iCreateTheFourDigitPasswordWithSequentialNumbers() {
+       onboarding.setFourDigitSequentialPassword();
+    }
+    
+    @When("I create the four digit password with same numbers")
+    public void iCreateTheFourDigitPasswordWithSameNumbers() {
+       onboarding.setFourDigitEqualsPassword();
+    }
+    
+    @When("I create the four digit password with birthday numbers")
+    public void iCreateTheFourDigitPasswordWithBirthdayNumbers() {
+       onboarding.setFourDigitBirthdayPassword();
     }
 
     @Then("I click on settings menu in my name")
@@ -140,4 +190,12 @@ public class OnboardingStep {
     public void buttoCrearCuentaIsDisabled() {
         onboarding.buttonCrearCuentaDisabled();
     }
+
+    @Then("button Continuar is disabled")
+    public void buttonContinuarIsDisabled() {
+    	onboarding.ButtonContinueDisabled();
+    }
+
+
+
 }

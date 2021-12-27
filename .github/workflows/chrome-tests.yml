@@ -4,9 +4,9 @@
 name: Esteira de Testes
 
 on:
-  workflow_dispatch:
+  push:
     branches: [ master ]
-
+    
 jobs:
   run-tests-chrome:
 
@@ -20,13 +20,5 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         cache: maven
-    - name: Prepare
-        env:
-          ALLURE_VERSION: 2.13.6
-        run: |
-          mvn clean compile test -Dmaven.test.skip=true --quiet
-          curl -L https://repo1.maven.org/maven2/io/qameta/allure/allure-commandline/${ALLURE_VERSION}/allure-commandline-${ALLURE_VERSION}.zip -o /tmp/allure-commandline.zip
-          unzip /tmp/allure-commandline.zip -d /tmp
-          mv /tmp/allure-${ALLURE_VERSION} /opt/allure-commandline
     - name: Run tests on chrome browser
-	run: mvn clean test
+      run: mvn clean test

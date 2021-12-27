@@ -29,5 +29,4 @@ jobs:
           unzip /tmp/allure-commandline.zip -d /tmp
           mv /tmp/allure-${ALLURE_VERSION} /opt/allure-commandline
     - name: Run tests on chrome browser
-	run: |
-          mvn clean test
+	run: mvn clean test

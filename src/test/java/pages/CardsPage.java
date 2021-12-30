@@ -4,9 +4,10 @@ package pages;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.sleep;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static utils.Utils.validateMessage;
 import static utils.Utils.numpadKeys;
+import static utils.Utils.validateMessage;
 
 import java.awt.AWTException;
 import java.text.ParseException;
@@ -53,8 +54,9 @@ public class CardsPage {
 	private SelenideElement buttonSearch= $(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Menú tarjeta'])[1]/following::*[name()='svg'][1]"));
 	private SelenideElement buttonEyeopened = $("svg[data-testid='icon-eye-opened']");	
 	private SelenideElement buttonEyeClosed = $("svg[data-testid='icon-eye-closed']");
+	private SelenideElement buttonArrowBackMainScreen = $("svg[data-testid='icon-arrow-back']");
 	private SelenideElement buttonArrowBack = $(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Botón de baja'])[1]/following::*[name()='svg'][1]"));
-	private SelenideElement buttonArrowBackMainScreen = $(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Extraer'])[1]/following::*[name()='svg'][1]"));
+	//private SelenideElement buttonArrowBackMainScreen = $(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Extraer'])[1]/following::*[name()='svg'][1]"));
 	private SelenideElement muiSwitchCard = $(By.xpath("//button[2]/div[2]/span/span"));
 	private SelenideElement mainCard = $(By.xpath("//*/text()[normalize-space(.)='Titular']/parent::*"));
 	private SelenideElement virtualCard = $(By.xpath("//*/text()[normalize-space(.)='Virtual']/parent::* | (.//*[normalize-space(text()) and normalize-space(.)='Saldo tarjeta'])[2]/following::div[4]"));
@@ -64,8 +66,6 @@ public class CardsPage {
 	private SelenideElement buttonDepartureDate= $(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Fecha de salida'])[1]/following::*[name()='svg'][1]"));
 	
 	
-	
-
 	public void selectOption(String menuOption) {
     	genericMenu = $(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='"+menuOption+"'])"));
     	genericMenu.shouldBe(visible).click();
@@ -77,6 +77,10 @@ public class CardsPage {
 		}
 
 		inputDepartureDate.sendKeys(date.replace("/", ""));
+	}
+	
+	public void validateIfMainCardIsVisible() {
+		assertFalse(mainCard.exists());
 	}
 	
 	public void selectDateDeparturePlus() {
@@ -100,9 +104,10 @@ public class CardsPage {
 		
 		int formated = Integer.parseInt(dateFormat.format(data).substring(0, 2)) + 1;
 		System.out.println(formated);
-				
-		genericMenu = $(By.xpath("//button/span/p[contains(text(), '"+Integer.toString(formated)+"')]"));
-		genericMenu.shouldBe(visible).click();
+		
+		genericMenu = $(By.xpath("//button/span/p[contains(text(), '"+Integer.toString(formated)+"')][last()]"));
+		sleep(2000);		
+		genericMenu.click();
 		
 	}
 	
@@ -162,7 +167,7 @@ public class CardsPage {
 	}
 	
 	public void clickOnButtonArrowBackMainScreen() {
-		sleep(2000);
+		sleep(3000);
 		buttonArrowBackMainScreen.shouldBe(visible).click();
 	}
 	

@@ -2,8 +2,11 @@ package steps;
 
 import static com.codeborne.selenide.Selenide.sleep;
 import static org.junit.Assert.assertTrue;
+import static utils.Utils.clearLastLine;
 import static utils.Utils.getJsonValueTest;
 import static utils.Utils.getValueListJson;
+import static utils.Utils.readAccount;
+import static utils.Utils.recordAccountAppend;
 import static utils.Utils.setAllureDetailsAboutTest;
 import static utils.Utils.validateMessage;
 
@@ -12,6 +15,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
+import commons.DataProject;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -64,6 +68,56 @@ public class CardsStep {
 		loginStep.clickOnButtonIngressar();
 		loginStep.loadingAPageIInformThe(password);
 	}
+	
+	String globalAccountAskedCard;
+	@Given("I'm logged in with the data {string} and {string} for asking a new card")
+	public void iMLoggedInWithTheDataArgentinaAnd(String country, String password)throws IOException {
+		String loginOption = "I ready have an account";
+		
+		String accounts_to_ask_cards_ar = DataProject.PATH_ACCOUNTS_TO_ASK_CARDS_AR;
+		String accounts_to_activate_cards_ar = DataProject.PATH_ACCOUNTS_TO_ACTIVATE_CARDS_AR;
+		String account = readAccount(accounts_to_ask_cards_ar);
+		
+		this.globalAccountAskedCard = account;
+		
+		System.out.println(account);
+		
+		String usedAccountCardToAsk = clearLastLine(accounts_to_ask_cards_ar);
+		
+		recordAccountAppend(usedAccountCardToAsk, accounts_to_activate_cards_ar);
+		
+		
+		loginStep.selectTheCountry(country); 
+		loginStep.selectIfTheOption(loginOption);
+		loginStep.fillInTheDocumentationFieldWithTheDocumentNumber(this.globalAccountAskedCard);
+		loginStep.clickOnButtonIngressar();
+		loginStep.loadingAPageIInformThe(password);
+	}	
+	
+	String globalAccountForActivateCard;
+	@Given("I'm logged in with the data {string} and {string} for activate a new card")
+	public void iMLoggedInWithTheDataForActivateCards(String country, String password)throws IOException {
+		String loginOption = "I ready have an account";
+		
+		String accounts_to_activate_cards_ar = DataProject.PATH_ACCOUNTS_TO_ACTIVATE_CARDS_AR;
+		String accounts_with_activate_main_card = DataProject.PATH_ACCOUNTS_WITH_ACTIVATE_MAIN_CARDS_AR;
+		
+		String account = readAccount(accounts_to_activate_cards_ar);
+		
+		this.globalAccountForActivateCard = account;
+		
+		System.out.println(account);
+		
+		String usedAccountCardToActivate = clearLastLine(accounts_to_activate_cards_ar);
+		
+		recordAccountAppend(usedAccountCardToActivate, accounts_with_activate_main_card);
+		
+		loginStep.selectTheCountry(country); 
+		loginStep.selectIfTheOption(loginOption);
+		loginStep.fillInTheDocumentationFieldWithTheDocumentNumber(this.globalAccountForActivateCard);
+		loginStep.clickOnButtonIngressar();
+		loginStep.loadingAPageIInformThe(password);
+	}	
 	
 	@When("I inform the reason {string} for replace card")
 	public void informTheReasonForReplaceCard(String reason) {
@@ -439,10 +493,32 @@ public class CardsStep {
 
     }
     
-    @When("I accept the terms to block virtual card")
-    public void iAcceptTheTermsToBlockVirtualCard() {
+    @Given("already activate my main card")
+    public void alreadyActivateMyMainCard() {
+    	sleep(2000);
+    }
+    
+    @Given("already blocked my main card")
+    public void alreadyBlockedMyMainCard() {
+    	sleep(2000);
+    }
+    
+    @Then("the main card should be unblocked")
+    public void theMainCardShouldBeUnblocked() {
+
+    }    
+    
+    @When("I accept the terms to block the card")
+    public void iAcceptTheTermsToBlockTheCard() {
     	cards.selectOption("Bloquear tarjeta");
     }
+    
+    @Then("the main card should be blocked")
+    public void theMainCardShouldBeBlocked() {
+    	sleep(2000);
+    	cards.validateIfMainCardIsVisible();
+    }
+    
     
     @Then("the switch button should be updated")
     public void theSwitchButtonShouldBeUpdated() {

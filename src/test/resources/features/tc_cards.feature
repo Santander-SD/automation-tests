@@ -6,7 +6,9 @@ Feature: Cards
   Background:
     Given are on the application's login page
     
-	@tc001_Validate_that_the_card_has_been_delivered
+ ################# -- FIRST DELIVERY -- #################  
+     
+	@tc001_Cards_Validate_that_the_card_has_been_delivered
   Scenario Outline: Cards - TC - 001 - [WEB] - happy path - Validate that the card has been delivered
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -22,10 +24,10 @@ Feature: Cards
     	
     Examples:
       | country     | documentation | password  | menu       | typeCard  |
-      | "Argentina" | "41369741"    | "192837"  | "Tarjetas" | "main"    |  
+      | "Argentina" | "41369741"    | "192837"  | "Tarjetas" | "main"    |
 
-	@tc002_Validate_main_card_replacement
-  Scenario Outline: Cards - TC - 002 - [WEB] - happy path - Validate layout for Main Card Replacement
+	@tc002_Cards_Validate_main_card_replacement
+  Scenario Outline: Cards - TC - 002 - [WEB] - happy path - Validate layout for main card Replacement
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my <typeCard> card
@@ -41,7 +43,7 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  | reason           |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"    | "Plástico roto"  |
       		
-	@tc003_Validate_forgot_PIN
+	@tc003_Cards_Validate_forgot_PIN
   Scenario Outline: Cards - TC - 003 - [WEB] - happy path - Validate forgot PIN
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -56,8 +58,8 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  | message                                         |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"    | "Esta operación solo se puede hacer por celular"|
 
-	@tc004_Validate_Cancel_Virtual_Card
-  Scenario Outline: Cards - TC - 004 - [WEB] - happy path - Validate layout for Cancel Virtual Card
+	@tc004_Cards_Validate_cancel_virtual_card
+  Scenario Outline: Cards - TC - 004 - [WEB] - happy path - Validate layout for cancel virtual card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my last <typeCard> card
@@ -95,7 +97,7 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |
 	
-	@tc007_Validate_view_from_virtual_card_details
+	@tc007_Cards_Validate_view_from_virtual_card_details
   Scenario Outline: Cards - TC - 007 - [WEB] - happy path - Validate view from virtual card details
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -108,7 +110,7 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |		
 		
-	@tc008_Validate_withdraw_money_from_virtual_card @Flaky
+	@tc008_Cards_Validate_withdraw_money_from_virtual_card
   Scenario Outline: Cards - TC - 008 - [WEB] - happy path - Validate withdraw money from virtual card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -125,8 +127,8 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  	| value  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual"  |	"1,11" |	
 
-	@tc009_Validate_recharge_virtual_card
-  Scenario Outline: Cards - TC - 009 - [WEB] - happy path - Validate layout for Recharge Virtual Card
+	@tc009_Cards_Validate_recharge_virtual_card
+  Scenario Outline: Cards - TC - 009 - [WEB] - happy path - Validate layout for recharge virtual card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my last <typeCard> card
@@ -141,8 +143,8 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  | value   |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |	"1,13" |
 
-	@tc010_Validate_Ask_for_a_Virtual_Cards
-  Scenario Outline: Cards - TC - 010 - [WEB] - happy path - Validate layout for Ask Virtual Card
+	@tc010_Cards_Validate_Ask_for_a_virtual_cards
+  Scenario Outline: Cards - TC - 010 - [WEB] - happy path - Validate layout for Ask virtual card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my <typeCard> card
@@ -154,26 +156,26 @@ Feature: Cards
 		Then should display a screen with the message 'Listo! Tu tarjeta virtual fue creada'
 
     Examples:
-      | country    | documentation | password  | menu       | typeCard  |
-      | "Colombia" | "87970142"    | "192837"  | "Tarjetas" | "virtual" |
+      | country     | documentation | password  | menu       | typeCard  |
+      | "Argentina" | "22735256"    | "192837"  | "Tarjetas" | "virtual" |
 
-	@tc011_Validate_block_virtual_card
-  Scenario Outline: Cards - TC - 011 - [WEB] - happy path - Validate layout for Block Virtual Card
+	@tc011_Cards_Validate_block_virtual_card
+  Scenario Outline: Cards - TC - 011 - [WEB] - happy path - Validate layout for block virtual card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And already activate my virtual card
 		And I select 'Menú tarjeta' for my <typeCard> card
 		When I click on 'Bloqueo Temporal'
-		And I accept the terms to block virtual card
+		And I accept the terms to block the card
 		Then the virtual card should be blocked
 		And the switch button should be updated
 		
     Examples:
       | country     | documentation | password  | menu       | typeCard  |
-      | "Colombia"  | "87970142"    | "192837"  | "Tarjetas" | "virtual" |
+      | "Colombia"  | "22735256"    | "192837"  | "Tarjetas" | "virtual" |
 
-	@tc012_Validate_unblock_virtual_card
-  Scenario Outline: Cards - TC - 012 - [WEB] - happy path - Validate layout for Unblock Virtual Card
+	@tc012_Cards_Validate_unblock_virtual_card
+  Scenario Outline: Cards - TC - 012 - [WEB] - happy path - Validate layout for Unblock virtual card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my last <typeCard> card
@@ -186,9 +188,9 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |
       		      
-	@tc013_Validate_Ask_for_a_Main_Card
-  Scenario Outline: Cards - TC - 013 - [WEB] - happy path - Validate layout for Ask for a Main Card
-		And I'm logged in with the data <country>,<documentation> and <password>
+	@tc013_Cards_Validate_ask_for_a_main_card
+  Scenario Outline: Cards - TC - 013 - [WEB] - happy path - Validate layout for ask for a main card
+		And I'm logged in with the data <country> and <password> for asking a new card
 		And I'm on the <menu> page
 		And I click on 'Entendido'
 		When I click on 'Pedir tarjeta física'
@@ -197,11 +199,11 @@ Feature: Cards
 		Then should display a screen with the message '¡Listo! En breve recibirás tu tarjeta física'
 
     Examples:
-      | country      | documentation | password  | menu       |
-      | "Argentina"  | "05692596"    | "192837"  | "Tarjetas" |
+      | country     | password  | menu       |
+      | "Argentina" | "192837"  | "Tarjetas" |
 
-	@tc014_Validate_Cancel_Main_Card
-  Scenario Outline: Cards - TC - 0014 - [WEB] - happy path - Validate layout for Cancel Main Card
+	@tc014_Cards_Validate_cancel_main_card
+  Scenario Outline: Cards - TC - 0014 - [WEB] - happy path - Validate layout for cancel main card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And I select 'Menú tarjeta' for my <typeCard> card
@@ -218,9 +220,9 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"   |					
 
- ################# -- SEGUNDA ENTREGA -- #################
+ ################# -- SECOND DELIVERY -- #################
 
-	@tc015_Validate_layout_for_activate_main_card
+	@tc015_Cards_Validate_layout_for_activate_main_card
   Scenario Outline: Cards - TC - 015 - [WEB] - happy path - Validate layout for activate main card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -236,7 +238,7 @@ Feature: Cards
       | country     | documentation | password  | menu       |
       | "Argentina" | "95812697"    | "192837"  | "Tarjetas" |
 
-	@tc162_Validate_information_about_vencimiento_de_mi_tarjeta
+	@tc162_Cards_Validate_information_about_vencimiento_de_mi_tarjeta
   Scenario Outline: Cards - TC - 162 - [WEB] - Validate information about vencimiento de mi tarjeta
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -249,7 +251,7 @@ Feature: Cards
       | country     | documentation | password  | menu       |
       | "Argentina" | "95812697"    | "192837"  | "Tarjetas" |		
 
-	@tc163_Validate_eye_button_to_view_the_entered_balance_card_for_main_card
+	@tc163_Cards_Validate_eye_button_to_view_the_entered_balance_card_for_main_card
   Scenario Outline: Cards - TC - 163 - [WEB] - Validate eye button to view the entered balance card for main card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -261,7 +263,7 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"   |	
       
-	@tc0164_Validate_eye_fom_balance_cards_for_virtual_card
+	@tc0164_Cards_Validate_eye_fom_balance_cards_for_virtual_card
   Scenario Outline: Cards - TC - 164 - [WEB] - Validate eye button to view the entered balance card for virtual card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -273,7 +275,7 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |	
 	
-	@tc165_Validate_buscar_comprobante_for_main_card
+	@tc165_Cards_Validate_buscar_comprobante_for_main_card
   Scenario Outline: Cards - TC - 165 - [WEB] - Validate 'buscar comprobante' for main card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -285,7 +287,7 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"   | 
 	
-	@tc166_Validate_virtual_card_without_operation
+	@tc166_Cards_Validate_virtual_card_without_operation
   Scenario Outline: Cards - TC - 166 - [WEB] - Validate virtual card without operation
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -297,7 +299,7 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" | 
       
-	@tc167_Validate_buscar_comprobante_for_virtual_card
+	@tc167_Cards_Validate_buscar_comprobante_for_virtual_card
   Scenario Outline: Cards - TC - 167 - [WEB] - Validate 'buscar comprobante' for virtual card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -309,7 +311,7 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" | 
             
-	@tc168_Validate_ningun_movimiento_for_main_card
+	@tc168_Cards_Validate_ningun_movimiento_for_main_card
   Scenario Outline: Cards - TC - 168 - [WEB] - Validate buscar comprobante - ningún movimiento for main card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -323,7 +325,7 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"   |
       
-	@tc169_Validate_layout_for_limit_of_virtual_Card
+	@tc169_Cards_Validate_layout_for_limit_of_virtual_Card
   Scenario Outline: Cards - TC - 169 - [WEB] - Validate layout for limit of virtual Card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -339,7 +341,7 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |
       
-	@tc170_Validate_ningun_movimiento_for_virtual_card
+	@tc170_Cards_Validate_ningun_movimiento_for_virtual_card
   Scenario Outline: Cards - TC - 170 - [WEB] - Validate buscar comprobante - ningún movimiento for virtual card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -353,7 +355,7 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |
 
-	@tc171_Validate_boton_de_baja_TimeOut_for_virtual_card
+	@tc171_Cards_Validate_boton_de_baja_TimeOut_for_virtual_card
   Scenario Outline: Cards - TC - 171 - [WEB] - Validate botón de baja timeOut for virtual card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -369,7 +371,7 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |
 
-	@tc172_Validate_boton_de_baja_timeOut_for_main_card
+	@tc172_Cards_Validate_boton_de_baja_timeOut_for_main_card
   Scenario Outline: Cards - TC - 172 - [WEB] - Validate botón de baja timeOut for main card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -385,7 +387,7 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"   |
       
-	@tc173_Validate_back_to_the_main_screen_cards
+	@tc173_Cards_Validate_back_to_the_main_screen_cards
   Scenario Outline: Cards - TC - 173 - [WEB] - Validate back to the main screen cards from the recargar tarjeta screen
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -398,7 +400,7 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |
       
-	@tc174_Validate_back_to_the_main_screen_from_tarjetas_Screen
+	@tc174_Cards_Validate_back_to_the_main_screen_from_tarjetas_Screen
   Scenario Outline: Cards - TC - 174 - [WEB] - Validate back to the main screen from tarjetas Screen
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -409,9 +411,9 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard  |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "virtual" |
       
- ################# -- TERCEIRA ENTREGA -- #################      
+ ################# -- THIRD DELIVERY -- #################
 
- 	@tc175_Validate_report_international_travel
+ 	@tc175_Cards_Validate_report_international_travel
   Scenario Outline: Cards - TC - 175 - [WEB] - Validate report international travel for main card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -419,7 +421,6 @@ Feature: Cards
 		When I click on 'Informar viaje internacional'
 		And I click on 'Registrar aviso de viaje'
 		And I selec the country <selectCountry>
-		And I select the departure date "16/12/2021"
 		And I select the arrival date to 1 day +
 		And I click on 'Crear aviso'
     Then should display a new repot
@@ -428,7 +429,7 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard | selectCountry |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"   | "Argentina"   |
       
- 	@tc176_Validate_invalid_date_Format_for_report_international_travel
+ 	@tc176_Cards_Validate_invalid_date_Format_for_report_international_travel
   Scenario Outline: Cards - TC - 176 - [WEB] - Validate invalid date Format for report international travel
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -443,7 +444,7 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard | selectCountry |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"   | "Argentina"   |
       
- 	@tc177_Validate_return_date_earlier_than_the_departure_date
+ 	@tc177_Cards_Validate_return_date_earlier_than_the_departure_date
   Scenario Outline: Cards - TC - 177 - [WEB] - Validate return date earlier than the departure date
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -458,7 +459,7 @@ Feature: Cards
       | country     | documentation | password  | menu       | typeCard | selectCountry |
       | "Argentina" | "29709517"    | "192837"  | "Tarjetas" | "main"   | "Argentina"   |
 
-	@tc178_Validate_timeOut_activate_card_for_main_card
+	@tc178_Cards_Validate_timeOut_activate_card_for_main_card
   Scenario Outline: Cards - TC - 178 - [WEB] - Validate timeOut activate card for main card
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
@@ -473,3 +474,36 @@ Feature: Cards
     Examples:
       | country     | documentation | password  | menu       |
       | "Argentina" | "46665484"    | "192837"  | "Tarjetas" |
+
+ ################# -- FOURTH DELIVERY -- #################
+ 
+	@tc247_Cards_Validate_layout_for_block_main_card
+  Scenario Outline: Cards - TC - 247 - [WEB] - happy path - Validate layout for block main card
+		And I'm logged in with the data <country>,<documentation> and <password>
+		And I'm on the <menu> page
+		And already activate my main card
+		And I select 'Menú tarjeta' for my <typeCard> card
+		When I click on 'Bloqueo temporal'
+		And I accept the terms to block the card
+		Then the main card should be blocked
+		And the switch button should be updated
+		
+    Examples:
+      | country     | documentation | password  | menu       | typeCard  |
+      | "Argentina" | "09780458"    | "192837"  | "Tarjetas" | "main"    |
+      
+	@tc248_Cards_Validate_layout_for_unblock_main_Card
+  Scenario Outline: Cards - TC - 248 - [WEB] - happy path - Validate layout for unblock main card
+		And I'm logged in with the data <country>,<documentation> and <password>
+		And I'm on the <menu> page
+		And already blocked my main card
+		When I click on 'Bloqueo temporal'
+		And I confirm operation on the mobile app		
+		Then should display the screen with message: 'Listo! Tu tarjeta está ya está desbloqueada'
+		And the main card should be unblocked
+		And the switch button should be updated
+		
+    Examples:
+      | country     | documentation | password  | menu       | typeCard |
+      | "Argentina" | "09780458"    | "192837"  | "Tarjetas" | "main"   |     
+      

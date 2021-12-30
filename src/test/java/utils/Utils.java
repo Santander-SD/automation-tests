@@ -7,14 +7,21 @@ import static com.codeborne.selenide.Selenide.screenshot;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -217,5 +224,96 @@ public class Utils {
     		  break;
     	}
 		return key;
-    }	
+    }
+    
+	public static String projectDir() {
+		String diretorio = System.getProperty("user.dir");
+		return diretorio;
+	}
+	
+	public static String getCurrentData() {
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date date = new Date();
+		return dateFormat.format(date);
+	}    
+    
+
+	public static String readAccount(String file) throws IOException {
+		String lastAccount = "";
+		try {
+			InputStream is = new FileInputStream(file);
+			InputStreamReader isr = new InputStreamReader(is);
+			BufferedReader br = new BufferedReader(isr);
+
+			String line = "";
+			while (line != null) {
+				line = br.readLine();
+				if (line != null) {
+					lastAccount = line;
+				}
+			}
+
+			br.close();
+			isr.close();
+			is.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			
+		}
+		return lastAccount;
+	}
+	
+	
+	public static void recordAccountAppend(String text, String file) throws IOException {
+		BufferedWriter buffWrite = new BufferedWriter(new FileWriter(file,true));
+		buffWrite.append(text + "\n");
+		buffWrite.close();
+	}	
+			
+	public static String clearLastLine(String file) throws IOException {
+		String filePath = file;
+		String account = readAccount(filePath);
+		
+		File localFile = new File(filePath);
+		
+		try {
+			
+			FileReader fr = new FileReader(localFile);
+			BufferedReader br = new BufferedReader(fr);
+			
+			String linha = br.readLine();
+			ArrayList<String> sabeList = new ArrayList<String>();
+			
+			while(linha != null) {
+
+				if(linha.equals(account.toString().trim()) == false ) {
+					sabeList.add(linha);
+				}
+				
+				linha = br.readLine();
+			}
+			
+			br.close();
+			fr.close();
+			FileWriter fw2 = new FileWriter(localFile, true);
+			fw2.close();
+			
+			FileWriter fw = new FileWriter(localFile);
+			BufferedWriter bw = new BufferedWriter(fw);
+			
+			for (int i = 0; i < sabeList.size(); i++) {
+	
+				bw.write(sabeList.get(i));
+				bw.newLine();
+			}
+			
+			bw.close();
+			fw.close();
+		
+	} catch (IOException ex) {
+		// TODO: handle exception
+	}
+		return account;
+	}	
+    
 }

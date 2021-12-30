@@ -59,7 +59,7 @@ Feature: Cash Out
       | "Argentina" | "08203590"    | "192837"  | "Extraer" | "50"  |
 
 	@tc253_CashOut_Validate_cancel_button_action_in_modal
-  Scenario Outline: Cards - TC - 253 - [WEB] - AR] Cash Out - Without Card - Validate cancel button action in modal
+  Scenario Outline: Cards - TC - 253 - [WEB] - [AR] Cash Out - Without Card - Validate cancel button action in modal
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And on the effective retreat screen to define the value to be removed with <value>
@@ -173,3 +173,15 @@ Feature: Cash Out
       | country     | documentation | password  | menu      | value |
       | "Argentina" | "08203590"    | "192837"  | "Extraer" | "145" |
 
+ ################# -- FIFTH DELIVERY -- #################
+ 
+	@tc261_CashOut_Validate_maximum_value_of_serve_on_super_digital_platform
+  Scenario Outline: Cards - TC - 261 - [WEB] - [AR] Cash Out - Without Card - Validate maximum value of serve on super digital platform
+		And I'm logged in with the data <country>,<documentation> and <password>
+		And I'm on the <menu> page
+		When on the effective retreat screen to define the value to be removed with <value>
+		Then should display a screen with the message 'El máximo es de $ 10.000,00'
+
+    Examples:
+      | country     | documentation | password  | menu      | value   | 
+      | "Argentina" | "08203590"    | "192837"  | "Extraer" | "12345" |

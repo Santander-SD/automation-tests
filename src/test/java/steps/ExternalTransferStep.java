@@ -39,6 +39,7 @@ public class ExternalTransferStep {
     public void fill_in_the_transfer_value_field_with(String string) {
         et.fillValue(string);
     }
+
     @When("select Concepto de transferencia {string}")
     public void select_concepto_de_transferencia(String string) {
         et.optionConcept(string);

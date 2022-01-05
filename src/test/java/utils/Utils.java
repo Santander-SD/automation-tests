@@ -3,6 +3,7 @@ package utils;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.screenshot;
+import static com.codeborne.selenide.Selenide.sleep;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -315,5 +316,12 @@ public class Utils {
 	}
 		return account;
 	}	
+	
+    public static void validateMessages(List<String> labels) {
+    	sleep(1000);
+    	for (int i = 0; i < labels.size(); i++) {  
+    		validateMessage(labels.get(i)); 		
+		} 
+    }	
     
 }

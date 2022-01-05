@@ -47,12 +47,12 @@ Feature: Cards
   Scenario Outline: Cards - TC - 003 - [WEB] - happy path - Validate forgot PIN
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
-		And I select 'Menú tarjeta' for my <typeCard> card		
+		And I select 'Menú tarjeta' for my <typeCard> card
 		And the account have a physical card
 		When I click on 'Olvidé mi contraseña'
 		And I see the message <message>
 		And inform my 6-digits password
-		Then I should see my 4-digits password in the screen 
+		Then I should see my 4-digits password in the screen
 
     Examples:
       | country     | documentation | password  | menu       | typeCard  | message                                         |

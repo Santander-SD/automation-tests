@@ -1,6 +1,7 @@
 package steps;
 
 import static com.codeborne.selenide.Selenide.sleep;
+
 import static org.junit.Assert.assertTrue;
 import static utils.Utils.clearLastLine;
 import static utils.Utils.getJsonValueTest;
@@ -396,6 +397,11 @@ public class CardsStep {
 		cards.setVirtualCardValue(value.replace(",", ""));
 		cards.pressConfirmarButton();
 	}
+	
+	@When("I insert the value {string}")
+	public void insertTheValue(String value) throws AWTException {
+		cards.setVirtualCardValue(value.replace(",", ""));
+	}	
 	
 	@Then("display the voucher with message {string}")
 	public void displayTheVoucherWithMessage(String string) {

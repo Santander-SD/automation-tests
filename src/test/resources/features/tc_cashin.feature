@@ -7,7 +7,7 @@ Feature: Cash In
     Given are on the application's login page
     
 	@tc179_CashIn_Validate_that_the_card_has_been_delivered
-  Scenario Outline: Cards - TC - 179 - [WEB] - Cash In - With out Card - Validation of CVU code layout
+  Scenario Outline: CashIn - TC - 179 - [WEB] - Cash In - With out Card - Validation of CVU code layout
 		And I'm logged in with the data <country>,<documentation> and <password>
 		When I click on "Cargar dinero"
 		Then should display the CVU code <cvu>
@@ -17,7 +17,7 @@ Feature: Cash In
       | "Argentina" | "46665484"    | "192837"  | "0000256300000000389815" |
 
 	@tc180_CashIn_Validate_search_for_branches_rapipago
-  Scenario Outline: Cards - TC - 180 - [WEB] - Cash In - With out Card - Validate search for branches rapipago
+  Scenario Outline: CashIn - TC - 180 - [WEB] - Cash In - With out Card - Validate search for branches rapipago
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I click on "Cargar dinero"
 		And I click on "Rapipago"
@@ -30,7 +30,7 @@ Feature: Cash In
       | "Argentina" | "46665484"    | "192837"  |
       
 	@tc181_CashIn_Validate_minimum_and_maximum_limit_information 
-  Scenario Outline: Cards - TC - 181 - [WEB] - Cash In - With out Card - Validate minimum and maximum limit information of cash in in the stream of rapipago
+  Scenario Outline: CashIn - TC - 181 - [WEB] - Cash In - With out Card - Validate minimum and maximum limit information of cash in in the stream of rapipago
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I click on "Cargar dinero"
 		When I click on "Rapipago"
@@ -42,7 +42,7 @@ Feature: Cash In
       | "Argentina" | "46665484"    | "192837"  |
       
 	@tc182_CashIn_Validate_no_direction_in_sucursales_cercanas_input
-  Scenario Outline: Cards - TC - 182 - [WEB] - Cash In - With out Card - Validate no direction in sucursales cercanas input
+  Scenario Outline: CashIn - TC - 182 - [WEB] - Cash In - With out Card - Validate no direction in sucursales cercanas input
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I click on "Cargar dinero"
 		And I click on "Rapipago"
@@ -55,7 +55,7 @@ Feature: Cash In
       | "Argentina" | "46665484"    | "192837"  | 
       
 	@tc183_CashIn_Validate_clear_sucursales_cercanas_input
-  Scenario Outline: Cards - TC - 183 - [WEB] - Cash In - With out Card - Validate clear sucursales cercanas input
+  Scenario Outline: CashIn - TC - 183 - [WEB] - Cash In - With out Card - Validate clear sucursales cercanas input
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I click on "Cargar dinero"
 		And I click on "Rapipago"
@@ -69,7 +69,7 @@ Feature: Cash In
       | "Argentina" | "46665484"    | "192837"  | 
       
 	@tc184_CashIn_Validate_infomations_about_cargar_dinero
-  Scenario Outline: Cards - TC - 184 - [WEB] - Cash In - With out Card - Validate Infomations about 'Cargar dinero'
+  Scenario Outline: CashIn - TC - 184 - [WEB] - Cash In - With out Card - Validate Infomations about 'Cargar dinero'
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I click on "Cargar dinero"
 		When I click on Help button
@@ -85,7 +85,7 @@ Feature: Cash In
       | "Argentina" | "46665484"    | "192837"  | 
       
 	@tc185_CashIn_Data_sharing_validation_dni
-  Scenario Outline: Cards - TC - 185 - [WEB] - Cash In - With out Card - Data sharing validation DNI
+  Scenario Outline: CashIn - TC - 185 - [WEB] - Cash In - With out Card - Data sharing validation DNI
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I click on "Cargar dinero"
 		And display the customer data screen for user account
@@ -100,7 +100,7 @@ Feature: Cash In
       | "Argentina" | "46665484"    | "192837"  |
       
 	@tc186_CashIn_Data_sharing_validation_cvu
-  Scenario Outline: Cards - TC - 186 - [WEB] - Cash In - With out Card - Data sharing validation CVU
+  Scenario Outline: CashIn - TC - 186 - [WEB] - Cash In - With out Card - Data sharing validation CVU
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I click on "Cargar dinero"
 		And display the customer data screen for user account
@@ -115,7 +115,7 @@ Feature: Cash In
       | "Argentina" | "46665484"    | "192837"  |
 
 	@tc187_CashIn_CVU_copy_validation
-  Scenario Outline: Cards - TC - 187 - [WEB] - Cash In - CVU copy validation
+  Scenario Outline: CashIn - TC - 187 - [WEB] - Cash In - CVU copy validation
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I click on "Cargar dinero"
 		When I click on the copy CVU button
@@ -128,7 +128,7 @@ Feature: Cash In
       | "Argentina" | "46665484"    | "192837"  |
 
 	@tc188_CashIn_alias_copy_validation
-  Scenario Outline: Cards - TC - 188 - [WEB] - Cash In - Alias copy validation
+  Scenario Outline: CashIn - TC - 188 - [WEB] - Cash In - Alias copy validation
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I click on "Cargar dinero"
 		When I click on the copy Alias button

@@ -9,7 +9,7 @@ Feature: Cash Out
  ################# -- FOURTH DELIVERY -- #################
      
 	@tc249_CashOut_Validate_retirar_efectivo_por_rapipago
-  Scenario Outline: Cards - TC - 249 - [WEB] - [AR] Cash Out - Without Card - Validate retirar efectivo por rapipago
+  Scenario Outline: CashOut - TC - 249 - [WEB] - [AR] Cash Out - Without Card - Validate retirar efectivo por rapipago
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		When I click on Help button
@@ -23,7 +23,7 @@ Feature: Cash Out
       | "Argentina" | "08203590"    | "192837"  | "Extraer" |
 
 	@tc250_CashOut_Validate_the_modal_of_attention_where_it_displays_the_total_amount
-  Scenario Outline: Cards - TC - 250 - [WEB] - [AR] Cash Out - Without Card - Validate the modal of attention where it displays the total amount of serve added with taxes 
+  Scenario Outline: CashOut - TC - 250 - [WEB] - [AR] Cash Out - Without Card - Validate the modal of attention where it displays the total amount of serve added with taxes 
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		When I click on "Comisión por retiro: $108,90 (incluye IVA)"
@@ -37,7 +37,7 @@ Feature: Cash Out
 
 
 	@tc251_CashOut_Validate_activation_of_the_continue_button
-  Scenario Outline: Cards - TC - 251 - [WEB] - [AR] Cash Out - Generate OTP (FE Web) - Validate activation of the continue button
+  Scenario Outline: CashOut - TC - 251 - [WEB] - [AR] Cash Out - Generate OTP (FE Web) - Validate activation of the continue button
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		When I'm on the screen where I define the amount to be withdrawn, I put the value <value> which is released for withdrawal
@@ -48,7 +48,7 @@ Feature: Cash Out
       | "Argentina" | "08203590"    | "192837"  | "Extraer" | "105"  |
 
 	@tc252_CashOut_Validate_serve_value_outside_allowed
-  Scenario Outline: Cards - TC - 252 - [WEB] - [AR] Cash Out - Generate OTP (FE Web) - Validate serve value outside allowed
+  Scenario Outline: CashOut - TC - 252 - [WEB] - [AR] Cash Out - Generate OTP (FE Web) - Validate serve value outside allowed
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		When I'm on the screen where I define the amount to be withdrawn, I put the value <value> which is out of the allowed
@@ -59,7 +59,7 @@ Feature: Cash Out
       | "Argentina" | "08203590"    | "192837"  | "Extraer" | "50"  |
 
 	@tc253_CashOut_Validate_cancel_button_action_in_modal
-  Scenario Outline: Cards - TC - 253 - [WEB] - [AR] Cash Out - Without Card - Validate cancel button action in modal
+  Scenario Outline: CashOut - TC - 253 - [WEB] - [AR] Cash Out - Without Card - Validate cancel button action in modal
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And on the effective retreat screen to define the value to be removed with <value>
@@ -72,7 +72,7 @@ Feature: Cash Out
       | "Argentina" | "08203590"    | "192837"  | "Extraer" | "123" |
 
 	@tc254_CashOut_Validate_lash_rate_calculation_modal
-  Scenario Outline: Cards - TC - 254 - [WEB] - [AR] Cash Out - Without Card - Validate lash rate calculation modal
+  Scenario Outline: CashOut - TC - 254 - [WEB] - [AR] Cash Out - Without Card - Validate lash rate calculation modal
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And on the effective retreat screen to define the value to be removed with <value>
@@ -88,7 +88,7 @@ Feature: Cash Out
       | "Argentina" | "08203590"    | "192837"  | "Extraer" | "145" |
 
 	@tc255_CashOut_Validate_minimum_value_of_serve_on_super_digital_platform
-  Scenario Outline: Cards - TC - 255 - [WEB] - [AR] Cash Out - Without Card - Validate minimum value of serve on super digital platform
+  Scenario Outline: CashOut - TC - 255 - [WEB] - [AR] Cash Out - Without Card - Validate minimum value of serve on super digital platform
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		When on the effective retreat screen to define the value to be removed with <value>
@@ -99,7 +99,7 @@ Feature: Cash Out
       | "Argentina" | "08203590"    | "192837"  | "Extraer" | "4"   |
 
 	@tc256_CashOut_Validate_alert_toast_balance_color
-  Scenario Outline: Cards - TC - 256 - [WEB] - [AR] Cash Out - Without Card - Validate alert toast balance color
+  Scenario Outline: CashOut - TC - 256 - [WEB] - [AR] Cash Out - Without Card - Validate alert toast balance color
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		When on the effective retreat screen to define the value to be removed with <value>
@@ -110,7 +110,7 @@ Feature: Cash Out
       | "Argentina" | "08203590"    | "192837"  | "Extraer" | "123456" |
 
 	@tc257_CashOut_Validate_timeout_operation
-  Scenario Outline: Cards - TC - 257 - [WEB] - [AR] Cash Out - Without Card - Validate timeout operation
+  Scenario Outline: CashOut - TC - 257 - [WEB] - [AR] Cash Out - Without Card - Validate timeout operation
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		And on the effective retreat screen to define the value to be removed with <value>
@@ -127,7 +127,7 @@ Feature: Cash Out
 
 
 	@tc258_CashOut_Validate_on_the_extraction_screen_the_total_account_value
-  Scenario Outline: Cards - TC - 258 - [WEB] - [AR] Cash Out - Without Card - Validate on the extraction screen the total account value
+  Scenario Outline: CashOut - TC - 258 - [WEB] - [AR] Cash Out - Without Card - Validate on the extraction screen the total account value
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And check the balance on the main screen
 		And I'm on the <menu> page
@@ -139,7 +139,7 @@ Feature: Cash Out
       | "Argentina" | "08203590"    | "192837"  | "Extraer" |
 
 	@tc259_CashOut_Validate_cash_out_uncompressed_when_requesting_authorization
-  Scenario Outline: Cards - TC - 259 - [WEB] - [AR] Cash Out - Without Card - Validate cash out uncompressed when requesting authorization in mobile for generation of the OTP code
+  Scenario Outline: CashOut - TC - 259 - [WEB] - [AR] Cash Out - Without Card - Validate cash out uncompressed when requesting authorization in mobile for generation of the OTP code
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And check the balance on the main screen		
 		And I'm on the <menu> page
@@ -154,7 +154,7 @@ Feature: Cash Out
       | "Argentina" | "08203590"    | "192837"  | "Extraer" | "145" |
 
 	@tc260_CashOut_Validate_successful_drawing_value
-  Scenario Outline: Cards - TC - 260 - [WEB] - [AR] Cash Out - Without Card - Validate successful drawing value
+  Scenario Outline: CashOut - TC - 260 - [WEB] - [AR] Cash Out - Without Card - Validate successful drawing value
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And check the balance on the main screen		
 		And I'm on the <menu> page
@@ -176,7 +176,7 @@ Feature: Cash Out
  ################# -- FIFTH DELIVERY -- #################
  
 	@tc261_CashOut_Validate_maximum_value_of_serve_on_super_digital_platform
-  Scenario Outline: Cards - TC - 261 - [WEB] - [AR] Cash Out - Without Card - Validate maximum value of serve on super digital platform
+  Scenario Outline: CashOut - TC - 261 - [WEB] - [AR] Cash Out - Without Card - Validate maximum value of serve on super digital platform
 		And I'm logged in with the data <country>,<documentation> and <password>
 		And I'm on the <menu> page
 		When on the effective retreat screen to define the value to be removed with <value>
@@ -185,3 +185,14 @@ Feature: Cash Out
     Examples:
       | country     | documentation | password  | menu      | value   | 
       | "Argentina" | "08203590"    | "192837"  | "Extraer" | "12345" |
+      
+	@tc262_CashOut_validate_fill_in_the_value_field_only_with_numbers_on_cashout
+  Scenario Outline: CashOut - TC - 262 - [WEB] - [AR] Cash Out - Without Card - Validate fill in the value field only with numbers on cashout
+		And I'm logged in with the data <country>,<documentation> and <password>
+		And I'm on the <menu> page
+		When insert the value <value>
+		Then the field does not allow entering the value 
+	
+    Examples:
+      | country     | documentation | password  | menu      | value  |
+      | "Argentina" | "08203590"    | "192837"  | "Extraer" | "abc"  |          

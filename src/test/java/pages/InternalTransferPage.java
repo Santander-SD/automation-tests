@@ -3,6 +3,7 @@ package pages;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.sleep;
+import static org.junit.Assert.assertTrue;
 
 import org.openqa.selenium.By;
 
@@ -32,6 +33,10 @@ public class InternalTransferPage {
 
     public void fillInField(String value) {
     	genericInput.sendKeys(value);
+    }
+    
+    public void validateOnlyNumberPhoneField() {
+    	assertTrue(genericInput.getAttribute("value").equals(""));    	
     }
     
     public void fillValueDocument(String value) {

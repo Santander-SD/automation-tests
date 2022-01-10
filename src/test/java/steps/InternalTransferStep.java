@@ -38,7 +38,12 @@ public class InternalTransferStep {
     @When("fill in the field with {string}")
     public void fill_in_the_field_with(String string) {
     	 it.fillInField(string);
-    }    	
+    }    
+    
+    @Then("the phone field does not allow entering the value")
+    public void thePhoneFieldDoesNotAllowEnteringTheValue() {
+    	it.validateOnlyNumberPhoneField();
+    }    
 	
     @When("fill in the transfer value field document with {string}")
     public void fill_in_the_transfer_value_field_with(String string) {

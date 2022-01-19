@@ -14,7 +14,7 @@ public class ExternalTransferPage {
     private SelenideElement labelCBUCVUAlias = $(By.xpath("//div[contains(class, '42-MuiInputBase')]"));
     private SelenideElement inputCBUCVUAlias = $(By.xpath("//input[@type='text']"));
     private SelenideElement btnContinue = $(By.xpath("//span[contains(.,'Continuar')]"));
-    private SelenideElement inputValue = $(By.xpath("//input[contains(@data-testid, 'responsive_currency_input_fraction')]"));
+    private SelenideElement inputValue = $(By.xpath("//input[contains(@data-testid, 'responsive_currency_input_fraction')] | //input"));
     private SelenideElement selectConcept = $(By.xpath("//div[contains(@aria-labelledby, 'concept-label')]"));
     private ElementsCollection selectConceptOption = $$("ul li");
     private SelenideElement checkSaveAsFavorite = $(By.xpath("//input[@type='checkbox']"));

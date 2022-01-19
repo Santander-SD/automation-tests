@@ -7,7 +7,6 @@ import io.cucumber.junit.CucumberOptions;
 import io.cucumber.junit.CucumberOptions.SnippetType;
 import org.junit.runner.RunWith;
 
-
 @RunWith(Cucumber.class)
 @CucumberOptions(
         plugin = {"pretty",
@@ -15,7 +14,7 @@ import org.junit.runner.RunWith;
         },
         features = "classpath:features",
         glue = {"steps"},
-        //tags = "@login",
+        //tags = "",
         snippets = SnippetType.CAMELCASE,
         monochrome = true,
         publish = true,
